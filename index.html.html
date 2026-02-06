@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KF Gestão de Negócios | Consultoria Empresarial</title>
+  <meta name="description" content="KF Gestão de Negócios: organização, precificação e controle para empresas crescerem com lucro. Consultor Khlever Ferreira (Clevelândio Lopes Ferreira). Atendimento em São Paulo capital e Norte do Paraná." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#111a2e;
+      --text:#eaf0ff;
+      --muted:#b9c5e6;
+      --accent:#5eead4;
+      --accent2:#60a5fa;
+      --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1000px 500px at 20% 0%, rgba(96,165,250,.25), transparent 60%),
+                  radial-gradient(1000px 500px at 80% 0%, rgba(94,234,212,.18), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:10px 0;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 30px rgba(96,165,250,.25);
+    }
+    .brand strong{font-size:16px;letter-spacing:.3px}
+    .brand span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+    .nav .links{display:flex;gap:14px;flex-wrap:wrap}
+    .nav .links a{font-size:13px;color:var(--muted);text-decoration:none}
+    .nav .links a:hover{color:var(--text)}
+    .hero{
+      margin-top:18px;
+      border:1px solid var(--line);
+      background: rgba(17,26,46,.75);
+      border-radius:22px;
+      padding:26px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background: radial-gradient(600px 200px at 30% 0%, rgba(94,234,212,.18), transparent 60%);
+      pointer-events:none;
+    }
+    h1{margin:0 0 10px 0;font-size:34px;line-height:1.15}
+    .subtitle{color:var(--muted);margin:0 0 16px 0;font-size:15px}
+    .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
+    .pill{
+      font-size:12px;
+      border:1px solid var(--line);
+      padding:8px 10px;border-radius:999px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-weight:600;font-size:14px;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(94,234,212,.22), rgba(96,165,250,.18));
+      border-color: rgba(94,234,212,.35);
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .card{
+      border:1px solid var(--line);
+      background: rgba(17,26,46,.65);
+      border-radius:18px;
+      padding:18px;
+    }
+    .heroRight{display:grid;gap:12px;align-content:start}
+    .miniTitle{font-size:12px;color:var(--muted);letter-spacing:.25px;text-transform:uppercase}
+    .bigNumber{font-size:22px;font-weight:800;margin:6px 0}
+    .list{margin:10px 0 0 0;padding:0;list-style:none;display:grid;gap:8px}
+    .list li{
+      display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:13px
+    }
+    .dot{
+      width:9px;height:9px;border-radius:50%;
+      background: var(--accent);
+      margin-top:6px;flex:none;
+      box-shadow: 0 0 0 4px rgba(94,234,212,.12);
+    }
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    h2{margin:0 0 8px 0;font-size:18px}
+    p{margin:0;color:var(--muted);font-size:13px}
+    .section{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.04);
+      margin-bottom:10px;
+    }
+    .caseBox{
+      display:grid;gap:10px;
+    }
+    .caseLine{
+      display:flex;gap:10px;align-items:flex-start;
+      border:1px dashed rgba(255,255,255,.18);
+      padding:10px;border-radius:14px;
+      color:var(--muted);font-size:13px;
+    }
+    .footer{
+      margin:22px 0 10px;
+      color:rgba(234,240,255,.7);
+      font-size:12px;
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr}
+      .grid{grid-template-columns: 1fr}
+      .section{grid-template-columns: 1fr}
+      h1{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="#inicio">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>KF Gestão de Negócios</strong>
+          <span>Consultoria Empresarial • Estruturação e Crescimento</span>
+        </div>
+      </a>
+      <div class="links">
+        <a href="#servicos">Serviços</a>
+        <a href="#metodo">Método</a>
+        <a href="#case">Case</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+
+    <section id="inicio" class="hero">
+      <div>
+        <h1>Organização, precificação e controle para sua empresa crescer com lucro.</h1>
+        <p class="subtitle">
+          Eu ajudo empresas da cidade a saírem da bagunça (preço errado, falta de controle e margem apertada)
+          para um modelo organizado, com indicadores e decisão por números.
+        </p>
+
+        <div class="pillrow">
+          <div class="pill">Diagnóstico em 7 dias</div>
+          <div class="pill">Plano de ação em 30 dias</div>
+          <div class="pill">Acompanhamento mensal</div>
+          <div class="pill">Estrutura digital (Azure) opcional</div>
+        </div>
+
+        <div class="cta">
+          <!-- Troque o número abaixo para seu WhatsApp -->
+          <a class="btn primary" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20KF%20Gest%C3%A3o%20de%20Neg%C3%B3cios%20e%20quero%20um%20diagn%C3%B3stico." target="_blank" rel="noopener">
+            WhatsApp • Agendar diagnóstico
+          </a>
+          <a class="btn" href="#servicos">Ver serviços</a>
+        </div>
+      </div>
+
+      <div class="heroRight">
+        <div class="card">
+          <div class="miniTitle">Foco nos 3 problemas mais comuns</div>
+          <div class="bigNumber">Bagunça • Preço errado • Falta de controle</div>
+          <ul class="list">
+            <li><span class="dot"></span><span>Organização do caixa, custos e despesas (separar pessoal x empresa).</span></li>
+            <li><span class="dot"></span><span>Precificação com margem correta e redução de desperdícios.</span></li>
+            <li><span class="dot"></span><span>Rotina de controle simples: vendas, estoque e indicadores.</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="miniTitle">Resultados que buscamos</div>
+          <ul class="list">
+            <li><span class="dot"></span><span>Lucro claro por produto/serviço</span></li>
+            <li><span class="dot"></span><span>Controle semanal sem “achismos”</span></li>
+            <li><span class="dot"></span><span>Plano de crescimento com metas</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos" class="grid">
+      <div class="card">
+        <h2>1) Diagnóstico Empresarial</h2>
+        <p>Levantamento rápido do que está vazando dinheiro: preço, custos, estoque, processos e rotina de controle.</p>
+      </div>
+      <div class="card">
+        <h2>2) Organização & Precificação</h2>
+        <p>Padronização de controles e cálculo de preço com margem. Ajustes imediatos para melhorar o resultado.</p>
+      </div>
+      <div class="card">
+        <h2>3) Acompanhamento Mensal</h2>
+        <p>Revisão de indicadores, metas e ações. Mantemos o negócio “nos trilhos” com foco em lucro e crescimento.</p>
+      </div>
+    </section>
+
+    <section id="metodo" class="section">
+      <div class="card">
+        <span class="badge">Método KF • 30 dias</span>
+        <h2>Como funciona (simples e objetivo)</h2>
+        <ul class="list">
+          <li><span class="dot"></span><span><strong>Semana 1:</strong> diagnóstico + metas (o que corrigir primeiro).</span></li>
+          <li><span class="dot"></span><span><strong>Semana 2:</strong> controle financeiro e rotina (caixa, custos, despesas).</span></li>
+          <li><span class="dot"></span><span><strong>Semana 3:</strong> precificação + margem + ajustes de desperdício.</span></li>
+          <li><span class="dot"></span><span><strong>Semana 4:</strong> indicadores + plano de continuidade.</span></li>
+        </ul>
+        <p style="margin-top:10px">Se fizer sentido, implantamos uma estrutura digital na nuvem (Azure) para centralizar e proteger os dados.</p>
+      </div>
+
+      <div id="case" class="card caseBox">
+        <span class="badge">Case técnico</span>
+        <h2>Implantação de fábrica (projeto MBA)</h2>
+        <div class="caseLine">
+          <span class="dot"></span>
+          <span>Estudo completo de implantação de indústria de alimentos derivados de milho (produção → fábrica → viabilidade).</span>
+        </div>
+        <div class="caseLine">
+          <span class="dot"></span>
+          <span>Análise econômico-financeira com cenários e indicadores (VPL, TIR, Payback, ROI e ponto de equilíbrio).</span>
+        </div>
+        <div class="caseLine">
+          <span class="dot"></span>
+          <span>Projeto estruturado para apoiar decisão de investimento e reduzir riscos do negócio.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="section">
+      <div class="card">
+        <span class="badge">Contato</span>
+        <h2>Fale comigo</h2>
+        <p>Atendimento em São Paulo – Capital e Norte do Paraná, além de projetos de implantação e viabilidade de negócios.</p>
+
+        <div class="cta" style="margin-top:14px">
+          <a class="btn primary" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20quero%20entender%20como%20funciona%20a%20consultoria%20da%20KF%20Gest%C3%A3o%20de%20Neg%C3%B3cios." target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn" href="mailto:consultorklever@gmail.com">E-mail</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="badge">Próximo passo</span>
+        <h2>Quer um diagnóstico rápido?</h2>
+        <p>Eu te faço 10 perguntas, identifico onde está a bagunça e entrego um plano simples para corrigir preço e controle.</p>
+        <p style="margin-top:10px;color:rgba(234,240,255,.8);font-size:13px">
+          *Sem compromisso. Se fizer sentido, avançamos para a implantação.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="y"></span> KF Gestão de Negócios</div>
+      <div>Consultor: Khlever Ferreira (Clevelândio Lopes Ferreira)</div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
