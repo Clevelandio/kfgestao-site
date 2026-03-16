@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KF Gestão de Negócios | Consultoria Empresarial</title>
-  <meta name="description" content="KF Gestão de Negócios - Consultoria empresarial em São Paulo capital e Norte do Paraná. Organização financeira, precificação e implantação de controles para empresas crescerem com lucro." />
+  <title>KF Gestão de Negócios | Consultoria Empresarial e Presença Digital</title>
+  <meta name="description" content="Consultoria empresarial e presença digital para empresas que querem organizar finanças, corrigir preços, melhorar controles e fortalecer sua autoridade com site profissional." />
 
   <style>
     :root{
@@ -15,8 +15,10 @@
       --accent:#5eead4;
       --accent2:#60a5fa;
       --line:rgba(255,255,255,.12);
+      --success:#25D366;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -43,10 +45,11 @@
     .nav .links{display:flex;gap:14px;flex-wrap:wrap}
     .nav .links a{font-size:13px;color:var(--muted);text-decoration:none}
     .nav .links a:hover{color:var(--text)}
+
     .hero{
       margin-top:18px;
       border:1px solid var(--line);
-      background: rgba(17,26,46,.75);
+      background: rgba(17,26,46,.78);
       border-radius:22px;
       padding:26px;
       display:grid;
@@ -61,8 +64,15 @@
       background: radial-gradient(600px 200px at 30% 0%, rgba(94,234,212,.18), transparent 60%);
       pointer-events:none;
     }
-    h1{margin:0 0 10px 0;font-size:34px;line-height:1.15}
+
+    h1{margin:0 0 12px 0;font-size:36px;line-height:1.12}
+    h2{margin:0 0 8px 0;font-size:22px}
+    h3{margin:0 0 6px 0;font-size:18px}
+    p{margin:0;color:var(--muted);font-size:14px}
     .subtitle{color:var(--muted);margin:0 0 16px 0;font-size:15px}
+    .section-title{margin-bottom:14px}
+    .section-title p{max-width:760px}
+
     .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
     .pill{
       font-size:12px;
@@ -71,6 +81,7 @@
       background: rgba(255,255,255,.04);
       color: var(--muted);
     }
+
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
@@ -81,24 +92,31 @@
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
       font-weight:600;font-size:14px;
+      transition:.2s ease;
     }
     .btn.primary{
       background: linear-gradient(135deg, rgba(94,234,212,.22), rgba(96,165,250,.18));
       border-color: rgba(94,234,212,.35);
     }
+    .btn.whats{
+      background: rgba(37,211,102,.12);
+      border-color: rgba(37,211,102,.35);
+    }
     .btn:hover{transform:translateY(-1px)}
+
     .card{
       border:1px solid var(--line);
-      background: rgba(17,26,46,.65);
+      background: rgba(17,26,46,.68);
       border-radius:18px;
       padding:18px;
     }
     .heroRight{display:grid;gap:12px;align-content:start}
     .miniTitle{font-size:12px;color:var(--muted);letter-spacing:.25px;text-transform:uppercase}
     .bigNumber{font-size:22px;font-weight:800;margin:6px 0}
+
     .list{margin:10px 0 0 0;padding:0;list-style:none;display:grid;gap:8px}
     .list li{
-      display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:13px
+      display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:14px
     }
     .dot{
       width:9px;height:9px;border-radius:50%;
@@ -106,20 +124,25 @@
       margin-top:6px;flex:none;
       box-shadow: 0 0 0 4px rgba(94,234,212,.12);
     }
-    .grid{
+
+    .grid-3{
       margin-top:18px;
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
-    h2{margin:0 0 8px 0;font-size:18px}
-    p{margin:0;color:var(--muted);font-size:13px}
-    .section{
+
+    .grid-2{
       margin-top:18px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
     }
+
+    .section{
+      margin-top:22px;
+    }
+
     .badge{
       display:inline-block;
       font-size:12px;
@@ -129,6 +152,12 @@
       background: rgba(255,255,255,.04);
       margin-bottom:10px;
     }
+
+    .highlight{
+      color:var(--text);
+      font-weight:700;
+    }
+
     .caseBox{
       display:grid;gap:10px;
     }
@@ -136,19 +165,22 @@
       display:flex;gap:10px;align-items:flex-start;
       border:1px dashed rgba(255,255,255,.18);
       padding:10px;border-radius:14px;
-      color:var(--muted);font-size:13px;
+      color:var(--muted);font-size:14px;
     }
+
     .footer{
       margin:22px 0 10px;
       color:rgba(234,240,255,.7);
       font-size:12px;
       display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap
     }
+
     @media (max-width: 900px){
       .hero{grid-template-columns: 1fr}
-      .grid{grid-template-columns: 1fr}
-      .section{grid-template-columns: 1fr}
-      h1{font-size:28px}
+      .grid-3{grid-template-columns: 1fr}
+      .grid-2{grid-template-columns: 1fr}
+      h1{font-size:29px}
+      h2{font-size:20px}
     }
   </style>
 </head>
@@ -159,36 +191,37 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <strong>KF Gestão de Negócios</strong>
-          <span>Consultoria Empresarial • Estruturação e Crescimento</span>
+          <span>Consultoria Empresarial • Gestão • Presença Digital</span>
         </div>
       </a>
       <div class="links">
         <a href="#servicos">Serviços</a>
         <a href="#metodo">Método</a>
-        <a href="#case">Case</a>
+        <a href="#sites">Sites</a>
+        <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
       </div>
     </div>
 
     <section id="inicio" class="hero">
       <div>
-        <h1>Organize sua empresa e aumente o lucro em 30 dias com controle e precificação correta.</h1>
+        <h1>Organize sua empresa, fortaleça sua presença digital e cresça com mais lucro e clareza.</h1>
         <p class="subtitle">
-          Eu ajudo empresas a corrigirem preço, reduzir desperdícios e implantar controle financeiro e operacional.
-          Você passa a saber exatamente quanto vende, quanto custa e quanto sobra de lucro — sem achismos.
+          A KF Gestão de Negócios ajuda empresas a corrigirem preços, reduzirem desperdícios,
+          implantarem controle financeiro e operacional e ainda estruturarem sua presença digital
+          com site profissional e foco comercial.
         </p>
 
         <div class="pillrow">
-          <div class="pill">Diagnóstico em 7 dias</div>
-          <div class="pill">Plano de ação em 30 dias</div>
+          <div class="pill">Diagnóstico estratégico</div>
+          <div class="pill">Precificação e controle</div>
           <div class="pill">Acompanhamento mensal</div>
-          <div class="pill">Estrutura digital (Azure) opcional</div>
+          <div class="pill">Site profissional para empresas</div>
         </div>
 
         <div class="cta">
-          <!-- Troque o número abaixo para seu WhatsApp -->
-          <a class="btn primary" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20KF%20Gest%C3%A3o%20de%20Neg%C3%B3cios%20e%20quero%20um%20diagn%C3%B3stico." target="_blank" rel="noopener">
-            WhatsApp • Agendar diagnóstico
+          <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20de%20Negócios%20e%20quero%20um%20diagnóstico." target="_blank" rel="noopener">
+            Agendar diagnóstico no WhatsApp
           </a>
           <a class="btn" href="#servicos">Ver serviços</a>
         </div>
@@ -196,134 +229,243 @@
 
       <div class="heroRight">
         <div class="card">
-          <div class="miniTitle">Foco nos 3 problemas mais comuns</div>
-          <div class="bigNumber">Descontrole financeiro • Preço errado • Falta de controle operacional</div>
+          <div class="miniTitle">Problemas mais comuns nas empresas</div>
+          <div class="bigNumber">Descontrole financeiro • Preço errado • Atendimento sem estrutura</div>
           <ul class="list">
-            <li><span class="dot"></span><span>Organização do caixa, custos e despesas (separar pessoal x empresa).</span></li>
-            <li><span class="dot"></span><span>Precificação com margem correta e redução de desperdícios.</span></li>
-            <li><span class="dot"></span><span>Rotina de controle simples: vendas, estoque e indicadores.</span></li>
+            <li><span class="dot"></span><span>Falta de clareza sobre lucro, custos, despesas e fluxo de caixa.</span></li>
+            <li><span class="dot"></span><span>Precificação incorreta, desperdícios e margem apertada.</span></li>
+            <li><span class="dot"></span><span>Empresa sem apresentação profissional, sem site e dependente só de rede social.</span></li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="miniTitle">Resultados que buscamos</div>
+          <div class="miniTitle">O que buscamos com a consultoria</div>
           <ul class="list">
-            <li><span class="dot"></span><span>Lucro claro por produto/serviço</span></li>
-            <li><span class="dot"></span><span>Controle semanal sem “achismos”</span></li>
-            <li><span class="dot"></span><span>Plano de crescimento com metas</span></li>
+            <li><span class="dot"></span><span>Mais controle para decidir com segurança</span></li>
+            <li><span class="dot"></span><span>Mais clareza sobre lucro e metas</span></li>
+            <li><span class="dot"></span><span>Mais autoridade e estrutura para vender melhor</span></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="servicos" class="grid">
-      <div class="card">
-        <h2>1) Diagnóstico Empresarial</h2>
-       <p>Em 7 dias, identifico onde você está perdendo dinheiro (preço, custos, desperdício e controle). Você recebe um plano de ação objetivo para aplicar imediatamente.</p>
+    <section id="servicos" class="section">
+      <div class="section-title">
+        <span class="badge">Serviços</span>
+        <h2>Como a KF Gestão pode ajudar sua empresa</h2>
+        <p>Os serviços são pensados para organizar o negócio, melhorar a tomada de decisão e fortalecer a imagem profissional da empresa no mercado.</p>
       </div>
-      <div class="card">
-        <h2>2) Organização & Precificação</h2>
-        <p>Implantação de rotina de controle + precificação com margem. Ajusto custos, reduzo desperdícios e deixo a empresa com números claros para decidir sem achismo.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>1) Diagnóstico Empresarial</h3>
+          <p>Identificação dos principais gargalos do negócio: preço, custos, desperdício, controle financeiro, operação e organização comercial. Você recebe direcionamento claro sobre o que corrigir primeiro.</p>
+        </div>
+
+        <div class="card">
+          <h3>2) Organização Financeira e Precificação</h3>
+          <p>Implantação de rotina de controle, revisão de custos, separação entre finanças pessoais e da empresa e construção de uma precificação com margem mais correta.</p>
+        </div>
+
+        <div class="card">
+          <h3>3) Acompanhamento Estratégico</h3>
+          <p>Acompanhamento com foco em indicadores, metas, ajustes de rota e crescimento com mais previsibilidade, sem depender apenas de percepção ou achismo.</p>
+        </div>
       </div>
-      <div class="card">
-        <h2>3) Acompanhamento Mensal</h2>
-        <p>Reunião mensal + indicadores + metas. Acompanho resultados, corrijo rota e mantenho o negócio organizado para crescer com lucro e previsibilidade.</p>
+    </section>
+
+    <section class="section">
+      <div class="grid-3">
+        <div class="card">
+          <h3>4) Estruturação Comercial</h3>
+          <p>Organização da oferta, melhoria da apresentação dos serviços, comunicação mais clara e apoio para o negócio vender com mais confiança e profissionalismo.</p>
+        </div>
+
+        <div class="card">
+          <h3>5) Site Profissional para Empresas</h3>
+          <p>Criação de site institucional ou comercial para fortalecer autoridade, apresentar serviços, facilitar o contato e transformar presença digital em apoio real para vendas.</p>
+        </div>
+
+        <div class="card">
+          <h3>6) Presença Digital Estratégica</h3>
+          <p>Integração entre gestão e presença online para que a empresa tenha uma base própria de comunicação, sem depender apenas de Instagram ou WhatsApp para se apresentar.</p>
+        </div>
       </div>
     </section>
 
     <section id="metodo" class="section">
-      <div class="card">
-        <span class="badge">Método KF • 30 dias</span>
-        <h2>Como funciona (simples e objetivo)</h2>
-        <ul class="list">
-          <li><span class="dot"></span><span><strong>Semana 1:</strong> diagnóstico + metas (o que corrigir primeiro).</span></li>
-          <li><span class="dot"></span><span><strong>Semana 2:</strong> controle financeiro e rotina (caixa, custos, despesas).</span></li>
-          <li><span class="dot"></span><span><strong>Semana 3:</strong> precificação + margem + ajustes de desperdício.</span></li>
-          <li><span class="dot"></span><span><strong>Semana 4:</strong> indicadores + plano de continuidade.</span></li>
-        </ul>
-        <p style="margin-top:10px">Se fizer sentido, implantamos uma estrutura digital na nuvem (Azure) para centralizar e proteger os dados.</p>
-      </div>
+      <div class="grid-2">
+        <div class="card">
+          <span class="badge">Método KF</span>
+          <h2>Como funciona o processo</h2>
+          <ul class="list">
+            <li><span class="dot"></span><span><strong>Etapa 1:</strong> diagnóstico da empresa e identificação das prioridades.</span></li>
+            <li><span class="dot"></span><span><strong>Etapa 2:</strong> organização financeira, controles e rotina de acompanhamento.</span></li>
+            <li><span class="dot"></span><span><strong>Etapa 3:</strong> revisão de preços, margem, desperdícios e melhoria operacional.</span></li>
+            <li><span class="dot"></span><span><strong>Etapa 4:</strong> estruturação comercial e, quando fizer sentido, implantação de presença digital com site profissional.</span></li>
+          </ul>
+        </div>
 
-      <div id="case" class="card caseBox">
-        <span class="badge">Case técnico</span>
-        <h2>Implantação de fábrica (projeto MBA)</h2>
-        <div class="caseLine">
-          <span class="dot"></span>
-          <span>Estudo completo de implantação de indústria de alimentos derivados de milho (produção → fábrica → viabilidade).</span>
+        <div class="card">
+          <span class="badge">Para quem é</span>
+          <h2>Empresas que precisam de mais estrutura</h2>
+          <ul class="list">
+            <li><span class="dot"></span><span>Negócios que faturam, mas não sabem exatamente quanto lucram.</span></li>
+            <li><span class="dot"></span><span>Empresas com preço mal calculado ou operação desorganizada.</span></li>
+            <li><span class="dot"></span><span>Empreendedores que querem crescer com base, metas e clareza.</span></li>
+            <li><span class="dot"></span><span>Negócios que precisam parecer tão profissionais quanto realmente são.</span></li>
+          </ul>
         </div>
-        <div class="caseLine">
-          <span class="dot"></span>
-          <span>Análise econômico-financeira com cenários e indicadores (VPL, TIR, Payback, ROI e ponto de equilíbrio).</span>
+      </div>
+    </section>
+
+    <section id="sites" class="section">
+      <div class="grid-2">
+        <div class="card">
+          <span class="badge">Sites e presença digital</span>
+          <h2>Por que incluir um site dentro da consultoria?</h2>
+          <p>
+            Muitas empresas até vendem bem, mas ainda não possuem uma base digital própria.
+            Dependem apenas de redes sociais ou de atendimento manual pelo WhatsApp.
+          </p>
+          <ul class="list">
+            <li><span class="dot"></span><span>O site fortalece a autoridade da empresa.</span></li>
+            <li><span class="dot"></span><span>Organiza a apresentação dos serviços e diferenciais.</span></li>
+            <li><span class="dot"></span><span>Facilita o contato e melhora a percepção de profissionalismo.</span></li>
+            <li><span class="dot"></span><span>Funciona como um ativo digital da empresa, não apenas uma vitrine.</span></li>
+          </ul>
         </div>
-        <div class="caseLine">
-          <span class="dot"></span>
-          <span>Projeto estruturado para apoiar decisão de investimento e reduzir riscos do negócio.</span>
+
+        <div class="card">
+          <span class="badge">Aplicação prática</span>
+          <h2>Como esse serviço agrega valor ao cliente</h2>
+          <ul class="list">
+            <li><span class="dot"></span><span><strong>Consultoria + site:</strong> o cliente organiza o negócio e melhora sua presença no mercado.</span></li>
+            <li><span class="dot"></span><span><strong>Mais confiança:</strong> um site profissional ajuda o cliente final a enxergar mais credibilidade.</span></li>
+            <li><span class="dot"></span><span><strong>Mais eficiência:</strong> a empresa passa a ter um canal claro para apresentar serviços e captar oportunidades.</span></li>
+            <li><span class="dot"></span><span><strong>Mais valor percebido:</strong> você entrega estratégia e execução, e não apenas orientação teórica.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="section">
+      <div class="grid-2">
+        <div class="card">
+          <span class="badge">Sobre</span>
+          <h2>KF Gestão de Negócios</h2>
+          <p>
+            A KF Gestão atua com foco em organização empresarial, precificação, controle financeiro,
+            acompanhamento estratégico e fortalecimento da presença digital de empresas que querem crescer com mais estrutura.
+          </p>
+          <p style="margin-top:12px">
+            A proposta é simples: ajudar o empresário a ter mais clareza, mais controle e mais base para tomar decisões melhores.
+          </p>
+        </div>
+
+        <div class="card caseBox">
+          <span class="badge">Experiência aplicada</span>
+          <h2>Projeto de implantação de fábrica</h2>
+          <div class="caseLine">
+            <span class="dot"></span>
+            <span>Estudo completo de implantação de indústria de alimentos derivados de milho, envolvendo estrutura produtiva, viabilidade e tomada de decisão.</span>
+          </div>
+          <div class="caseLine">
+            <span class="dot"></span>
+            <span>Análise econômico-financeira com indicadores como VPL, TIR, Payback, ROI e ponto de equilíbrio.</span>
+          </div>
+          <div class="caseLine">
+            <span class="dot"></span>
+            <span>Projeto técnico voltado para apoiar investimento e reduzir riscos do negócio.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <div class="card">
+          <span class="badge">Diferencial</span>
+          <h2>Mais do que consultoria: estrutura para crescer</h2>
+          <p>
+            A KF Gestão une visão de negócio com aplicação prática.
+            O objetivo não é entregar teoria, mas ajudar a empresa a sair da desorganização
+            e avançar com mais controle, posicionamento e profissionalismo.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="badge">Importante</span>
+          <h2>Seu negócio não precisa depender só de rede social</h2>
+          <p>
+            Redes sociais ajudam, mas não substituem gestão, clareza e presença digital própria.
+            Um site bem estruturado reforça sua marca, organiza sua comunicação e dá mais segurança para o cliente entrar em contato.
+          </p>
         </div>
       </div>
     </section>
 
     <section id="contato" class="section">
-      <div class="card">
-        <span class="badge">Contato</span>
-        <h2>Fale comigo</h2>
-        <p>Atendimento empresarial em São Paulo Capital e cidades do Norte do Paraná como Londrina, Maringá, Apucarana e região.</p>
+      <div class="grid-2">
+        <div class="card">
+          <span class="badge">Contato</span>
+          <h2>Fale com a KF Gestão</h2>
+          <p>
+            Atendimento empresarial em São Paulo Capital e cidades do Norte do Paraná,
+            como Londrina, Maringá, Apucarana e região.
+          </p>
 
-        <div class="cta" style="margin-top:14px">
-          <a class="btn primary" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20quero%20entender%20como%20funciona%20a%20consultoria%20da%20KF%20Gest%C3%A3o%20de%20Neg%C3%B3cios." target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn" href="mailto:consultorklever@gmail.com">E-mail</a>
+          <div class="cta" style="margin-top:14px">
+            <a class="btn whats" href="https://wa.me/5511993838392?text=Olá,%20quero%20entender%20como%20funciona%20a%20consultoria%20da%20KF%20Gestão%20de%20Negócios." target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn" href="mailto:consultorklever@gmail.com">E-mail</a>
+          </div>
         </div>
-      </div>
 
-      <div class="card">
-        <span class="badge">Próximo passo</span>
-        <h2>Quer um diagnóstico rápido?</h2>
-        <p>Eu faço um diagnóstico rápido com 10 perguntas e te entrego um plano objetivo para corrigir preço, custos e controle — com ações para aplicar já.</p>
-        <p style="margin-top:10px;color:rgba(234,240,255,.8);font-size:13px">
-          *Sem compromisso. Se fizer sentido, avançamos para a implantação.
-        </p>
+        <div class="card">
+          <span class="badge">Próximo passo</span>
+          <h2>Quer entender onde sua empresa pode melhorar?</h2>
+          <p>
+            Entre em contato e conheça uma proposta de diagnóstico para identificar pontos de melhoria
+            na gestão, no controle financeiro, na precificação, na operação e também na presença digital do negócio.
+          </p>
+          <div class="cta" style="margin-top:14px">
+            <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20consultoria%20e%20site%20profissional." target="_blank" rel="noopener">Solicitar atendimento</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <div class="footer">
       <div>© <span id="y"></span> KF Gestão de Negócios</div>
       <div>Consultor: Khlever Ferreira (Clevelândio Lopes Ferreira)</div>
-
     </div>
   </div>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
-  <!-- Botão WhatsApp Flutuante -->
-<a href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20de%20Negócios%20e%20quero%20um%20diagnóstico."
-   target="_blank"
-   style="
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     background-color: #25D366;
-     color: #fff;
-     border-radius: 50%;
-     width: 60px;
-     height: 60px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     font-size: 30px;
-     text-decoration: none;
-     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-     z-index: 9999;
-   ">
-  💬
-</a>
+
+  <a href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20de%20Negócios%20e%20quero%20um%20diagnóstico."
+     target="_blank"
+     aria-label="Falar no WhatsApp"
+     style="
+       position: fixed;
+       bottom: 20px;
+       right: 20px;
+       background-color: #25D366;
+       color: #fff;
+       border-radius: 50%;
+       width: 60px;
+       height: 60px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 30px;
+       text-decoration: none;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+       z-index: 9999;
+     ">
+    💬
+  </a>
 </body>
 </html>
-<!-- deploy -->
-
-
-
-
-
-
-
-
