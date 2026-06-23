@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KF Gestão de Negócios | Consultoria Empresarial e Presença Digital</title>
-  <meta name="description" content="Consultoria empresarial e presença digital para empresas que querem organizar finanças, corrigir preços, melhorar controles e fortalecer sua autoridade com site profissional." />
+  <title>KF Gestão de Negócios | Consultoria Empresarial, Operações e Presença Digital</title>
+  <meta name="description" content="Consultoria empresarial para pequenas empresas que precisam organizar processos, estoque, indicadores, precificação, operação e presença digital com mais controle e rentabilidade." />
 
   <style>
     :root{
@@ -16,6 +16,7 @@
       --accent2:#60a5fa;
       --line:rgba(255,255,255,.12);
       --success:#25D366;
+      --warning:#fbbf24;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -51,9 +52,9 @@
       border:1px solid var(--line);
       background: rgba(17,26,46,.78);
       border-radius:22px;
-      padding:26px;
+      padding:30px;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:22px;
       overflow:hidden;
       position:relative;
@@ -64,14 +65,15 @@
       background: radial-gradient(600px 200px at 30% 0%, rgba(94,234,212,.18), transparent 60%);
       pointer-events:none;
     }
+    .hero > *{position:relative;z-index:1}
 
-    h1{margin:0 0 12px 0;font-size:36px;line-height:1.12}
-    h2{margin:0 0 8px 0;font-size:22px}
+    h1{margin:0 0 12px 0;font-size:40px;line-height:1.1}
+    h2{margin:0 0 8px 0;font-size:24px}
     h3{margin:0 0 6px 0;font-size:18px}
     p{margin:0;color:var(--muted);font-size:14px}
-    .subtitle{color:var(--muted);margin:0 0 16px 0;font-size:15px}
+    .subtitle{color:var(--muted);margin:0 0 16px 0;font-size:16px}
     .section-title{margin-bottom:14px}
-    .section-title p{max-width:760px}
+    .section-title p{max-width:800px}
 
     .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
     .pill{
@@ -114,6 +116,31 @@
     .miniTitle{font-size:12px;color:var(--muted);letter-spacing:.25px;text-transform:uppercase}
     .bigNumber{font-size:22px;font-weight:800;margin:6px 0}
 
+    .numbers{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    .numberBox{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:rgba(255,255,255,.04);
+    }
+    .numberBox strong{
+      display:block;
+      font-size:24px;
+      color:var(--accent);
+      line-height:1;
+      margin-bottom:6px;
+    }
+    .numberBox span{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+    }
+
     .list{margin:10px 0 0 0;padding:0;list-style:none;display:grid;gap:8px}
     .list li{
       display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:14px
@@ -139,9 +166,7 @@
       gap:14px;
     }
 
-    .section{
-      margin-top:22px;
-    }
+    .section{margin-top:22px}
 
     .badge{
       display:inline-block;
@@ -153,19 +178,40 @@
       margin-bottom:10px;
     }
 
-    .highlight{
-      color:var(--text);
-      font-weight:700;
-    }
+    .highlight{color:var(--text);font-weight:700}
 
-    .caseBox{
-      display:grid;gap:10px;
-    }
+    .caseBox{display:grid;gap:10px}
     .caseLine{
       display:flex;gap:10px;align-items:flex-start;
       border:1px dashed rgba(255,255,255,.18);
       padding:10px;border-radius:14px;
       color:var(--muted);font-size:14px;
+    }
+
+    .founder{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:14px;
+      align-items:start;
+    }
+    .timeline{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .timelineItem{
+      border-left:3px solid rgba(94,234,212,.55);
+      padding-left:12px;
+    }
+    .timelineItem strong{
+      display:block;
+      color:var(--text);
+      font-size:14px;
+    }
+    .timelineItem span{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
     }
 
     .footer{
@@ -176,11 +222,17 @@
     }
 
     @media (max-width: 900px){
-      .hero{grid-template-columns: 1fr}
+      .hero{grid-template-columns: 1fr;padding:22px}
       .grid-3{grid-template-columns: 1fr}
       .grid-2{grid-template-columns: 1fr}
-      h1{font-size:29px}
+      .founder{grid-template-columns:1fr}
+      .numbers{grid-template-columns:1fr 1fr}
+      h1{font-size:31px}
       h2{font-size:20px}
+    }
+    @media (max-width: 520px){
+      .numbers{grid-template-columns:1fr}
+      .nav{align-items:flex-start;flex-direction:column}
     }
   </style>
 </head>
@@ -191,32 +243,33 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <strong>KF Gestão de Negócios</strong>
-          <span>Consultoria Empresarial • Gestão • Presença Digital</span>
+          <span>Consultoria Empresarial • Operações • Indicadores • Presença Digital</span>
         </div>
       </a>
       <div class="links">
         <a href="#servicos">Serviços</a>
         <a href="#metodo">Método</a>
+        <a href="#fundador">Fundador</a>
         <a href="#sites">Sites</a>
-        <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
       </div>
     </div>
 
     <section id="inicio" class="hero">
       <div>
-        <h1>Organize sua empresa, fortaleça sua presença digital e cresça com mais lucro e clareza.</h1>
+        <h1>39 anos de experiência transformados em gestão para pequenas empresas.</h1>
         <p class="subtitle">
-          A KF Gestão de Negócios ajuda empresas a corrigirem preços, reduzirem desperdícios,
-          implantarem controle financeiro e operacional e ainda estruturarem sua presença digital
-          com site profissional e foco comercial.
+          A KF Gestão de Negócios ajuda empresários a organizar processos, estoques, indicadores,
+          custos, precificação, operação e presença digital para crescer com mais controle,
+          rentabilidade e segurança.
         </p>
 
         <div class="pillrow">
-          <div class="pill">Diagnóstico estratégico</div>
-          <div class="pill">Precificação e controle</div>
-          <div class="pill">Acompanhamento mensal</div>
-          <div class="pill">Site profissional para empresas</div>
+          <div class="pill">Diagnóstico empresarial</div>
+          <div class="pill">Estoque e processos</div>
+          <div class="pill">Indicadores e DRE</div>
+          <div class="pill">Precificação e rentabilidade</div>
+          <div class="pill">Site profissional</div>
         </div>
 
         <div class="cta">
@@ -229,22 +282,46 @@
 
       <div class="heroRight">
         <div class="card">
-          <div class="miniTitle">Problemas mais comuns nas empresas</div>
-          <div class="bigNumber">Descontrole financeiro • Preço errado • Atendimento sem estrutura</div>
-          <ul class="list">
-            <li><span class="dot"></span><span>Falta de clareza sobre lucro, custos, despesas e fluxo de caixa.</span></li>
-            <li><span class="dot"></span><span>Precificação incorreta, desperdícios e margem apertada.</span></li>
-            <li><span class="dot"></span><span>Empresa sem apresentação profissional, sem site e dependente só de rede social.</span></li>
-          </ul>
+          <div class="miniTitle">Diferencial da KF Gestão</div>
+          <div class="bigNumber">Experiência de grandes operações aplicada à realidade das pequenas empresas.</div>
+          <div class="numbers">
+            <div class="numberBox"><strong>39+</strong><span>anos de trajetória profissional</span></div>
+            <div class="numberBox"><strong>90+</strong><span>ativos operacionais geridos em Angola</span></div>
+            <div class="numberBox"><strong>50</strong><span>colaboradores indiretos liderados</span></div>
+            <div class="numberBox"><strong>MBA</strong><span>Gestão de Negócios USP/ESALQ</span></div>
+          </div>
         </div>
 
         <div class="card">
           <div class="miniTitle">O que buscamos com a consultoria</div>
           <ul class="list">
-            <li><span class="dot"></span><span>Mais controle para decidir com segurança</span></li>
-            <li><span class="dot"></span><span>Mais clareza sobre lucro e metas</span></li>
-            <li><span class="dot"></span><span>Mais autoridade e estrutura para vender melhor</span></li>
+            <li><span class="dot"></span><span>Mais clareza sobre lucro, custos, estoque e margem.</span></li>
+            <li><span class="dot"></span><span>Mais controle para decidir com base em dados, não em achismo.</span></li>
+            <li><span class="dot"></span><span>Mais organização operacional para crescer com menos desperdício.</span></li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <span class="badge">Problemas comuns</span>
+        <h2>Sua empresa enfrenta algum destes problemas?</h2>
+        <p>Muitas empresas vendem todos os dias, mas não conseguem enxergar com clareza onde ganham, onde perdem e o que precisa ser corrigido primeiro.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Estoque sem controle</h3>
+          <p>Você compra, vende e repõe mercadorias, mas não sabe exatamente o que tem parado, o que gira e o que gera prejuízo.</p>
+        </div>
+        <div class="card">
+          <h3>Preço sem margem real</h3>
+          <p>A empresa vende, mas não sabe se o preço cobre custos, despesas, impostos, perdas e ainda deixa lucro.</p>
+        </div>
+        <div class="card">
+          <h3>Decisão por percepção</h3>
+          <p>As decisões são tomadas no “sentimento”, sem indicadores, metas, DRE, fluxo de caixa ou acompanhamento consistente.</p>
         </div>
       </div>
     </section>
@@ -259,36 +336,32 @@
       <div class="grid-3">
         <div class="card">
           <h3>1) Diagnóstico Empresarial</h3>
-          <p>Identificação dos principais gargalos do negócio: preço, custos, desperdício, controle financeiro, operação e organização comercial. Você recebe direcionamento claro sobre o que corrigir primeiro.</p>
+          <p>Identificação dos principais gargalos do negócio: preço, custos, desperdício, controle financeiro, operação, estoque e organização comercial.</p>
         </div>
 
         <div class="card">
-          <h3>2) Organização Financeira e Precificação</h3>
-          <p>Implantação de rotina de controle, revisão de custos, separação entre finanças pessoais e da empresa e construção de uma precificação com margem mais correta.</p>
+          <h3>2) Organização Operacional</h3>
+          <p>Estruturação de processos, rotinas, controles e indicadores para reduzir desperdícios, retrabalho e falhas operacionais.</p>
         </div>
 
         <div class="card">
-          <h3>3) Acompanhamento Estratégico</h3>
-          <p>Acompanhamento com foco em indicadores, metas, ajustes de rota e crescimento com mais previsibilidade, sem depender apenas de percepção ou achismo.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="grid-3">
-        <div class="card">
-          <h3>4) Estruturação Comercial</h3>
-          <p>Organização da oferta, melhoria da apresentação dos serviços, comunicação mais clara e apoio para o negócio vender com mais confiança e profissionalismo.</p>
+          <h3>3) Estoque e Indicadores</h3>
+          <p>Controle de entradas, saídas, inventário, giro, rupturas, perdas e indicadores para acompanhar a operação com mais clareza.</p>
         </div>
 
         <div class="card">
-          <h3>5) Site Profissional para Empresas</h3>
-          <p>Criação de site institucional ou comercial para fortalecer autoridade, apresentar serviços, facilitar o contato e transformar presença digital em apoio real para vendas.</p>
+          <h3>4) Precificação e Rentabilidade</h3>
+          <p>Revisão de custos, margem, CMV, ponto de equilíbrio e estrutura de preços para melhorar a rentabilidade.</p>
         </div>
 
         <div class="card">
-          <h3>6) Presença Digital Estratégica</h3>
-          <p>Integração entre gestão e presença online para que a empresa tenha uma base própria de comunicação, sem depender apenas de Instagram ou WhatsApp para se apresentar.</p>
+          <h3>5) Acompanhamento Estratégico</h3>
+          <p>Acompanhamento com foco em metas, indicadores, ajustes de rota, produtividade e crescimento com mais previsibilidade.</p>
+        </div>
+
+        <div class="card">
+          <h3>6) Presença Digital e Site</h3>
+          <p>Criação ou reorganização de site profissional para fortalecer autoridade, apresentar serviços e facilitar contato comercial.</p>
         </div>
       </div>
     </section>
@@ -297,12 +370,12 @@
       <div class="grid-2">
         <div class="card">
           <span class="badge">Método KF</span>
-          <h2>Como funciona o processo</h2>
+          <h2>Um processo simples, prático e orientado a resultado</h2>
           <ul class="list">
-            <li><span class="dot"></span><span><strong>Etapa 1:</strong> diagnóstico da empresa e identificação das prioridades.</span></li>
-            <li><span class="dot"></span><span><strong>Etapa 2:</strong> organização financeira, controles e rotina de acompanhamento.</span></li>
-            <li><span class="dot"></span><span><strong>Etapa 3:</strong> revisão de preços, margem, desperdícios e melhoria operacional.</span></li>
-            <li><span class="dot"></span><span><strong>Etapa 4:</strong> estruturação comercial e, quando fizer sentido, implantação de presença digital com site profissional.</span></li>
+            <li><span class="dot"></span><span><strong>Diagnóstico:</strong> entendemos a situação atual da empresa e as prioridades.</span></li>
+            <li><span class="dot"></span><span><strong>Organização:</strong> implantamos controles, processos e rotinas.</span></li>
+            <li><span class="dot"></span><span><strong>Indicadores:</strong> criamos métricas para acompanhar resultados.</span></li>
+            <li><span class="dot"></span><span><strong>Crescimento:</strong> apoiamos decisões com base em dados, metas e gestão.</span></li>
           </ul>
         </div>
 
@@ -311,10 +384,61 @@
           <h2>Empresas que precisam de mais estrutura</h2>
           <ul class="list">
             <li><span class="dot"></span><span>Negócios que faturam, mas não sabem exatamente quanto lucram.</span></li>
-            <li><span class="dot"></span><span>Empresas com preço mal calculado ou operação desorganizada.</span></li>
+            <li><span class="dot"></span><span>Empresas com estoque, preço ou operação desorganizada.</span></li>
             <li><span class="dot"></span><span>Empreendedores que querem crescer com base, metas e clareza.</span></li>
             <li><span class="dot"></span><span>Negócios que precisam parecer tão profissionais quanto realmente são.</span></li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="fundador" class="section">
+      <div class="founder">
+        <div class="card">
+          <span class="badge">Sobre o Fundador</span>
+          <h2>Clevelândio Lopes Ferreira</h2>
+          <h3>Executivo de Operações e Consultor Empresarial</h3>
+          <p>
+            Profissional com mais de 39 anos de experiência nos segmentos industrial, aeronáutico,
+            telecomunicações, logística, infraestrutura, construção pesada, mercado imobiliário e gestão empresarial.
+          </p>
+          <p style="margin-top:12px">
+            Sua trajetória começou na formação técnica em Mecânica Geral pelo SENAI e evoluiu por áreas críticas de
+            operação, manutenção, segurança operacional, logística, gestão de ativos, suprimentos, análise de DRE,
+            indicadores e desenvolvimento de negócios.
+          </p>
+          <p style="margin-top:12px">
+            Atuou na VASP como mecânico aeronáutico e posteriormente na Assessoria da Diretoria de Operações,
+            participando de projetos relacionados à segurança de voo, CRM corporativo, treinamentos, gestão documental,
+            habilitações técnicas e relacionamento com órgãos reguladores.
+          </p>
+          <p style="margin-top:12px">
+            Em Angola, ocupou posições de Gerente Geral, Gerente Operacional e Gerente de Filial, com responsabilidade
+            sobre aproximadamente 50 colaboradores indiretos e gestão de parque operacional superior a 90 ativos,
+            incluindo caminhões, carretas, retroescavadeiras, pás carregadeiras, motoniveladoras, gruas, guindaste,
+            geradores e veículos de apoio.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="badge">Credenciais e formação</span>
+          <ul class="list">
+            <li><span class="dot"></span><span>MBA em Gestão de Negócios – USP/ESALQ.</span></li>
+            <li><span class="dot"></span><span>MBA em Gestão Estratégica de Negócios – em andamento.</span></li>
+            <li><span class="dot"></span><span>Bacharel em Ciências Aeronáuticas – Gestão de Empresas Aéreas e Aeroportos.</span></li>
+            <li><span class="dot"></span><span>Administração de Empresas – cursado até o 4º semestre.</span></li>
+            <li><span class="dot"></span><span>Mecânica Geral – SENAI.</span></li>
+            <li><span class="dot"></span><span>Power BI – Hashtag Treinamentos.</span></li>
+            <li><span class="dot"></span><span>Excel Avançado, Análise de Dados e FlutterFlow.</span></li>
+            <li><span class="dot"></span><span>CRECI desde 2014.</span></li>
+          </ul>
+
+          <div class="timeline">
+            <div class="timelineItem"><strong>Técnica</strong><span>SENAI, mecânica, manutenção e precisão operacional.</span></div>
+            <div class="timelineItem"><strong>Operação</strong><span>Aviação, segurança operacional, logística e manutenção.</span></div>
+            <div class="timelineItem"><strong>Gestão</strong><span>Angola, DRE, ativos, equipes, suprimentos e resultados.</span></div>
+            <div class="timelineItem"><strong>Consultoria</strong><span>Aplicação prática em pequenas e médias empresas.</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -325,82 +449,29 @@
           <span class="badge">Sites e presença digital</span>
           <h2>Por que incluir um site dentro da consultoria?</h2>
           <p>
-            Muitas empresas até vendem bem, mas ainda não possuem uma base digital própria.
-            Dependem apenas de redes sociais ou de atendimento manual pelo WhatsApp.
+            Muitas empresas vendem, mas ainda não possuem uma base digital própria. Dependem apenas de redes sociais
+            ou de atendimento manual pelo WhatsApp.
           </p>
           <ul class="list">
             <li><span class="dot"></span><span>O site fortalece a autoridade da empresa.</span></li>
             <li><span class="dot"></span><span>Organiza a apresentação dos serviços e diferenciais.</span></li>
             <li><span class="dot"></span><span>Facilita o contato e melhora a percepção de profissionalismo.</span></li>
-            <li><span class="dot"></span><span>Funciona como um ativo digital da empresa, não apenas uma vitrine.</span></li>
+            <li><span class="dot"></span><span>Funciona como ativo digital da empresa, não apenas uma vitrine.</span></li>
           </ul>
         </div>
 
-        <div class="card">
-          <span class="badge">Aplicação prática</span>
-          <h2>Como esse serviço agrega valor ao cliente</h2>
-          <ul class="list">
-            <li><span class="dot"></span><span><strong>Consultoria + site:</strong> o cliente organiza o negócio e melhora sua presença no mercado.</span></li>
-            <li><span class="dot"></span><span><strong>Mais confiança:</strong> um site profissional ajuda o cliente final a enxergar mais credibilidade.</span></li>
-            <li><span class="dot"></span><span><strong>Mais eficiência:</strong> a empresa passa a ter um canal claro para apresentar serviços e captar oportunidades.</span></li>
-            <li><span class="dot"></span><span><strong>Mais valor percebido:</strong> você entrega estratégia e execução, e não apenas orientação teórica.</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="sobre" class="section">
-      <div class="grid-2">
-        <div class="card">
-          <span class="badge">Sobre</span>
-          <h2>KF Gestão de Negócios</h2>
-          <p>
-            A KF Gestão atua com foco em organização empresarial, precificação, controle financeiro,
-            acompanhamento estratégico e fortalecimento da presença digital de empresas que querem crescer com mais estrutura.
-          </p>
-          <p style="margin-top:12px">
-            A proposta é simples: ajudar o empresário a ter mais clareza, mais controle e mais base para tomar decisões melhores.
-          </p>
-        </div>
-
-        <div class="card caseBox">
-          <span class="badge">Experiência aplicada</span>
-          <h2>Projeto de implantação de fábrica</h2>
-          <div class="caseLine">
-            <span class="dot"></span>
-            <span>Estudo completo de implantação de indústria de alimentos derivados de milho, envolvendo estrutura produtiva, viabilidade e tomada de decisão.</span>
-          </div>
-          <div class="caseLine">
-            <span class="dot"></span>
-            <span>Análise econômico-financeira com indicadores como VPL, TIR, Payback, ROI e ponto de equilíbrio.</span>
-          </div>
-          <div class="caseLine">
-            <span class="dot"></span>
-            <span>Projeto técnico voltado para apoiar investimento e reduzir riscos do negócio.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="grid-2">
         <div class="card">
           <span class="badge">Diferencial</span>
           <h2>Mais do que consultoria: estrutura para crescer</h2>
           <p>
-            A KF Gestão une visão de negócio com aplicação prática.
-            O objetivo não é entregar teoria, mas ajudar a empresa a sair da desorganização
-            e avançar com mais controle, posicionamento e profissionalismo.
+            A KF Gestão une visão de negócio com aplicação prática. O objetivo não é entregar teoria,
+            mas ajudar a empresa a sair da desorganização e avançar com mais controle,
+            posicionamento e profissionalismo.
           </p>
-        </div>
-
-        <div class="card">
-          <span class="badge">Importante</span>
-          <h2>Seu negócio não precisa depender só de rede social</h2>
-          <p>
-            Redes sociais ajudam, mas não substituem gestão, clareza e presença digital própria.
-            Um site bem estruturado reforça sua marca, organiza sua comunicação e dá mais segurança para o cliente entrar em contato.
-          </p>
+          <div class="caseLine" style="margin-top:12px">
+            <span class="dot"></span>
+            <span>Transformamos experiência de grandes operações em soluções práticas para pequenas empresas.</span>
+          </div>
         </div>
       </div>
     </section>
@@ -418,6 +489,7 @@
           <div class="cta" style="margin-top:14px">
             <a class="btn whats" href="https://wa.me/5511993838392?text=Olá,%20quero%20entender%20como%20funciona%20a%20consultoria%20da%20KF%20Gestão%20de%20Negócios." target="_blank" rel="noopener">WhatsApp</a>
             <a class="btn" href="mailto:consultorklever@gmail.com">E-mail</a>
+            <a class="btn" href="https://www.linkedin.com/in/clevelandio-lopes-ferreira-09938263" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
 
@@ -426,10 +498,10 @@
           <h2>Quer entender onde sua empresa pode melhorar?</h2>
           <p>
             Entre em contato e conheça uma proposta de diagnóstico para identificar pontos de melhoria
-            na gestão, no controle financeiro, na precificação, na operação e também na presença digital do negócio.
+            na gestão, no controle financeiro, na precificação, no estoque, na operação e também na presença digital.
           </p>
           <div class="cta" style="margin-top:14px">
-            <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20consultoria%20e%20site%20profissional." target="_blank" rel="noopener">Solicitar atendimento</a>
+            <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20consultoria%20empresarial." target="_blank" rel="noopener">Solicitar atendimento</a>
           </div>
         </div>
       </div>
@@ -437,7 +509,7 @@
 
     <div class="footer">
       <div>© <span id="y"></span> KF Gestão de Negócios</div>
-      <div>Consultor: Khlever Ferreira Linkedin: https://www.linkedin.com/in/clevelandio-lopes-ferreira-09938263</div>
+      <div>Consultor: Khlever Ferreira • LinkedIn: clevelandio-lopes-ferreira-09938263</div>
     </div>
   </div>
 
@@ -469,4 +541,4 @@
   </a>
 </body>
 </html>
-<!--- atualização --->
+<!-- atualização institucional KF Gestão -->
