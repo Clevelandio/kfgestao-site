@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KF Gestão de Negócios | Consultoria Empresarial, Operações e Presença Digital</title>
-  <meta name="description" content="Consultoria empresarial para pequenas empresas que precisam organizar processos, estoque, indicadores, precificação, operação e presença digital com mais controle e rentabilidade." />
+  <title>KF Gestão | Programa Founders — 10 empresas, 90 dias</title>
+  <meta name="description" content="KF Gestão — inteligência para entender, decidir e evoluir. Conheça o Programa Founders: 10 empresas em um ciclo de 90 dias com diagnóstico estruturado, prioridades, acompanhamento e mensuração da evolução." />
 
   <style>
     :root{
@@ -221,17 +221,122 @@
       display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap
     }
 
+
+    .foundersProgram{
+      margin-top:22px;
+      border:1px solid rgba(251,191,36,.32);
+      background:
+        radial-gradient(800px 320px at 15% 0%, rgba(251,191,36,.12), transparent 62%),
+        rgba(17,26,46,.78);
+      border-radius:22px;
+      padding:26px;
+    }
+    .foundersHeader{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:start;
+    }
+    .foundersEyebrow{
+      display:inline-block;
+      color:var(--warning);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+    .foundersProgram h2{font-size:32px;line-height:1.15;margin-bottom:10px}
+    .foundersLead{font-size:16px;max-width:760px}
+    .foundersStats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    .foundersStat{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      background:rgba(255,255,255,.04);
+    }
+    .foundersStat strong{
+      display:block;
+      font-size:28px;
+      line-height:1;
+      color:var(--warning);
+      margin-bottom:6px;
+    }
+    .foundersStat span{font-size:12px;color:var(--muted)}
+    .foundersFlow{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .foundersStep{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      background:rgba(255,255,255,.035);
+    }
+    .foundersStep b{
+      display:block;
+      color:var(--warning);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin-bottom:6px;
+    }
+    .foundersStep strong{display:block;margin-bottom:5px}
+    .foundersAreas{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:16px;
+    }
+    .foundersArea{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:7px 9px;
+      background:rgba(255,255,255,.035);
+    }
+    .foundersCallout{
+      margin-top:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px;
+      border:1px solid rgba(251,191,36,.28);
+      border-radius:16px;
+      background:rgba(251,191,36,.07);
+    }
+    .foundersCallout p{max-width:720px}
+    .btn.foundersBtn{
+      background:linear-gradient(135deg, rgba(251,191,36,.28), rgba(94,234,212,.12));
+      border-color:rgba(251,191,36,.45);
+      white-space:nowrap;
+    }
+
     @media (max-width: 900px){
       .hero{grid-template-columns: 1fr;padding:22px}
       .grid-3{grid-template-columns: 1fr}
       .grid-2{grid-template-columns: 1fr}
       .founder{grid-template-columns:1fr}
       .numbers{grid-template-columns:1fr 1fr}
+      .foundersHeader{grid-template-columns:1fr}
+      .foundersFlow{grid-template-columns:1fr}
+      .foundersCallout{align-items:flex-start;flex-direction:column}
       h1{font-size:31px}
       h2{font-size:20px}
     }
     @media (max-width: 520px){
       .numbers{grid-template-columns:1fr}
+      .foundersStats{grid-template-columns:1fr 1fr}
+      .foundersProgram{padding:20px}
+      .foundersProgram h2{font-size:26px}
       .nav{align-items:flex-start;flex-direction:column}
     }
   </style>
@@ -247,9 +352,10 @@
         </div>
       </a>
       <div class="links">
+        <a href="#founders">Programa Founders</a>
         <a href="#servicos">Serviços</a>
         <a href="#metodo">Método</a>
-        <a href="#fundador">Fundador</a>
+        <a href="#fundador">Sobre o Fundador</a>
         <a href="#sites">Sites</a>
         <a href="#contato">Contato</a>
       </div>
@@ -257,11 +363,10 @@
 
     <section id="inicio" class="hero">
       <div>
-        <h1>29 anos de experiência transformados em gestão para pequenas empresas.</h1>
+        <h1>Inteligência para entender, decidir e evoluir.</h1>
         <p class="subtitle">
-          A KF Gestão de Negócios ajuda empresários a organizar processos, estoques, indicadores,
-          custos, precificação, operação e presença digital para crescer com mais controle,
-          rentabilidade e segurança.
+          A KF Gestão transforma diagnóstico, evidências e acompanhamento em prioridades claras para a tomada de decisão empresarial.
+          Neste momento, estamos selecionando as <strong>10 empresas do primeiro ciclo do Programa Founders</strong>.
         </p>
 
         <div class="pillrow">
@@ -269,15 +374,15 @@
           <div class="pill">Estoque e processos</div>
           <div class="pill">Indicadores e DRE</div>
           <div class="pill">Precificação e rentabilidade</div>
-          <div class="pill">Site profissional</div>
-          <div class="pill">Análise de dados operacionais</div>
+          <div class="pill">Processos e pessoas</div>
+          <div class="pill">Tecnologia e governança</div>
         </div>
 
         <div class="cta">
-          <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20de%20Negócios%20e%20quero%20um%20diagnóstico." target="_blank" rel="noopener">
-            Agendar diagnóstico no WhatsApp
+          <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20e%20quero%20entender%20o%20Programa%20Founders%20de%2090%20dias." target="_blank" rel="noopener">
+            Conhecer o Programa Founders
           </a>
-          <a class="btn" href="#servicos">Ver serviços</a>
+          <a class="btn" href="#founders">Ver como funcionam os 90 dias</a>
         </div>
       </div>
 
@@ -301,6 +406,73 @@
             <li><span class="dot"></span><span>Mais organização operacional para crescer com menos desperdício.</span></li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section id="founders" class="foundersProgram">
+      <div class="foundersHeader">
+        <div>
+          <span class="foundersEyebrow">Programa Founders • Primeiro ciclo</span>
+          <h2>10 empresas. 90 dias. Gestão orientada por evidências.</h2>
+          <p class="foundersLead">
+            A KF Gestão está selecionando 10 empresas para a primeira aplicação comercial completa de sua metodologia.
+            O objetivo é compreender a empresa de forma sistêmica, identificar prioridades, acompanhar a execução
+            e mensurar a evolução ao longo de 90 dias.
+          </p>
+        </div>
+        <div class="foundersStats">
+          <div class="foundersStat"><strong>10</strong><span>empresas selecionadas</span></div>
+          <div class="foundersStat"><strong>90</strong><span>dias de acompanhamento</span></div>
+          <div class="foundersStat"><strong>13</strong><span>pilares de gestão avaliados</span></div>
+          <div class="foundersStat"><strong>3</strong><span>etapas de evolução</span></div>
+        </div>
+      </div>
+
+      <div class="foundersFlow">
+        <div class="foundersStep">
+          <b>Dias 1–30</b>
+          <strong>Diagnóstico e mapa de prioridades</strong>
+          <p>Leitura estruturada do cenário atual, identificação dos pontos de atenção e definição do que merece foco primeiro.</p>
+        </div>
+        <div class="foundersStep">
+          <b>Dias 31–60</b>
+          <strong>Execução e acompanhamento</strong>
+          <p>Acompanhamento das prioridades definidas, evolução das ações e ajustes de rota com base nas evidências.</p>
+        </div>
+        <div class="foundersStep">
+          <b>Dias 61–90</b>
+          <strong>Mensuração e próximos passos</strong>
+          <p>Comparação da evolução, consolidação dos aprendizados e direcionamento do próximo ciclo de gestão.</p>
+        </div>
+      </div>
+
+      <div class="foundersAreas" aria-label="Áreas avaliadas pela KF Gestão">
+        <span class="foundersArea">Estratégia</span>
+        <span class="foundersArea">Financeiro</span>
+        <span class="foundersArea">Fluxo de Caixa</span>
+        <span class="foundersArea">Comercial e Vendas</span>
+        <span class="foundersArea">Marketing</span>
+        <span class="foundersArea">Clientes</span>
+        <span class="foundersArea">Estoque</span>
+        <span class="foundersArea">Compras e Fornecedores</span>
+        <span class="foundersArea">Processos</span>
+        <span class="foundersArea">Pessoas</span>
+        <span class="foundersArea">Indicadores</span>
+        <span class="foundersArea">Tecnologia</span>
+        <span class="foundersArea">Governança e Melhoria Contínua</span>
+      </div>
+
+      <div class="foundersCallout">
+        <div>
+          <h3>Quer avaliar se sua empresa tem perfil para participar?</h3>
+          <p>
+            Founder significa cliente participante desta primeira turma comercial da KF Gestão.
+            A participação não representa vínculo ou participação societária na KF Gestão.
+          </p>
+        </div>
+        <a class="btn foundersBtn"
+           href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20e%20tenho%20interesse%20em%20avaliar%20a%20participação%20da%20minha%20empresa%20no%20Programa%20Founders."
+           target="_blank" rel="noopener">Quero conversar sobre o programa</a>
       </div>
     </section>
 
@@ -500,13 +672,13 @@
 
         <div class="card">
           <span class="badge">Próximo passo</span>
-          <h2>Quer entender onde sua empresa pode melhorar?</h2>
+          <h2>Quer saber se sua empresa tem perfil para o Programa Founders?</h2>
           <p>
-            Entre em contato e conheça uma proposta de diagnóstico para identificar pontos de melhoria
-            na gestão, no controle financeiro, na precificação, no estoque, na operação e também na presença digital.
+            Converse com a KF Gestão para conhecer o ciclo de 90 dias, entender os critérios de participação
+            e avaliar se este é o momento adequado para sua empresa.
           </p>
           <div class="cta" style="margin-top:14px">
-            <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20consultoria%20empresarial." target="_blank" rel="noopener">Solicitar atendimento</a>
+            <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20Programa%20Founders%20da%20KF%20Gestão." target="_blank" rel="noopener">Conhecer o Programa Founders</a>
           </div>
         </div>
       </div>
@@ -522,7 +694,7 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
-  <a href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20de%20Negócios%20e%20quero%20um%20diagnóstico."
+  <a href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20e%20quero%20entender%20o%20Programa%20Founders%20de%2090%20dias."
      target="_blank"
      aria-label="Falar no WhatsApp"
      style="
