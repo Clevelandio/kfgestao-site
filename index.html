@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KF Gestão de Negócios | Consultoria Empresarial, Operações e Presença Digital</title>
-  <meta name="description" content="Consultoria empresarial para pequenas empresas que precisam organizar processos, estoque, indicadores, precificação, operação e presença digital com mais controle e rentabilidade." />
+  <title>KF Gestão | Programa Founders e acompanhamento de gestão em 90 dias</title>
+  <meta name="description" content="Conheça a KF Gestão e o Programa Founders: diagnóstico empresarial, prioridades, planos de ação e acompanhamento de gestão em 90 dias para pequenas e médias empresas." />
 
   <style>
     :root{
@@ -221,6 +221,18 @@
       display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap
     }
 
+    p,.list li,.caseLine{font-size:1rem}
+    .nav .links a,.brand span,.pill,.badge,.numberBox span,.timelineItem span{font-size:.875rem}
+    .nav .links a{display:inline-block;padding:7px 0}
+    .nav{flex-wrap:wrap}
+    .nav .links{justify-content:flex-start}
+    .brand{min-width:0}
+    .brand span{overflow-wrap:anywhere}
+    .numberBox strong{font-size:clamp(1rem,3vw,1.5rem);line-height:1.3}
+    .footer{padding-bottom:72px}
+    section{scroll-margin-top:20px}
+    :is(a,button,input,summary):focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.btn:hover{transform:none}}
     @media (max-width: 900px){
       .hero{grid-template-columns: 1fr;padding:22px}
       .grid-3{grid-template-columns: 1fr}
@@ -234,6 +246,22 @@
       .numbers{grid-template-columns:1fr}
       .nav{align-items:flex-start;flex-direction:column}
     }
+  
+    .kf-faq p{font-size:1rem;line-height:1.6}
+    .kf-faq [hidden]{display:none!important}
+    .kf-search label{display:block;font-weight:600;margin-bottom:8px}
+    .kf-search input{width:100%;min-height:48px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);font:inherit;font-size:1rem}
+    .kf-search input::placeholder{color:var(--muted);opacity:1}
+    .kf-topics{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+    .kf-topics button{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font:inherit;cursor:pointer;font-size:.875rem}
+    .kf-faq :is(button,input,summary,a):focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    #kf-search-status{font-size:.875rem;margin:12px 0}
+    .kf-answer{border-top:1px solid var(--line);padding:15px 0}
+    .kf-answer summary{cursor:pointer;font-size:1rem;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+    .kf-answer p{margin:12px 0 0;max-width:850px;overflow-wrap:anywhere}
+    .kf-faq .kf-faq-note{font-size:.875rem;margin-top:16px}
+    .kf-faq .btn{font-size:1rem;text-align:center}
+
   </style>
 </head>
 <body>
@@ -243,25 +271,26 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <strong>KF Gestão de Negócios</strong>
-          <span>Consultoria Empresarial • Operações • Indicadores • Presença Digital</span>
+          <span>Inteligência para entender, decidir e evoluir</span>
         </div>
       </a>
       <div class="links">
+        <a href="#founders">Programa Founders</a>
         <a href="#servicos">Serviços</a>
         <a href="#metodo">Método</a>
         <a href="#fundador">Fundador</a>
         <a href="#sites">Sites</a>
+        <a href="#duvidas-founders">Dúvidas Founders</a>
         <a href="#contato">Contato</a>
       </div>
     </div>
 
     <section id="inicio" class="hero">
       <div>
-        <h1>39 anos de experiência transformados em gestão para pequenas empresas.</h1>
+        <h1>Inteligência para entender, decidir e evoluir.</h1>
         <p class="subtitle">
-          A KF Gestão de Negócios ajuda empresários a organizar processos, estoques, indicadores,
-          custos, precificação, operação e presença digital para crescer com mais controle,
-          rentabilidade e segurança.
+          A KF Gestão ajuda empresários a compreender sua empresa, definir prioridades com base em evidências
+          e acompanhar os planos de ação. Conheça o Programa Founders: um ciclo de 90 dias para pequenas e médias empresas.
         </p>
 
         <div class="pillrow">
@@ -269,14 +298,14 @@
           <div class="pill">Estoque e processos</div>
           <div class="pill">Indicadores e DRE</div>
           <div class="pill">Precificação e rentabilidade</div>
-          <div class="pill">Site profissional</div>
+          <div class="pill">Acompanhamento de gestão</div>
         </div>
 
         <div class="cta">
-          <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20de%20Negócios%20e%20quero%20um%20diagnóstico." target="_blank" rel="noopener">
-            Agendar diagnóstico no WhatsApp
+          <a class="btn primary" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20conhecer%20o%20Programa%20Founders%20da%20KF%20Gest%C3%A3o." target="_blank" rel="noopener noreferrer">
+            Conversar sobre o Programa Founders
           </a>
-          <a class="btn" href="#servicos">Ver serviços</a>
+          <a class="btn" href="#founders">Conhecer os 90 dias</a>
         </div>
       </div>
 
@@ -285,7 +314,7 @@
           <div class="miniTitle">Diferencial da KF Gestão</div>
           <div class="bigNumber">Experiência de grandes operações aplicada à realidade das pequenas empresas.</div>
           <div class="numbers">
-            <div class="numberBox"><strong>39+</strong><span>anos de trajetória profissional</span></div>
+            <div class="numberBox"><strong>Operações</strong><span>experiência profissional em gestão</span></div>
             <div class="numberBox"><strong>90+</strong><span>ativos operacionais geridos em Angola</span></div>
             <div class="numberBox"><strong>50</strong><span>colaboradores indiretos liderados</span></div>
             <div class="numberBox"><strong>MBA</strong><span>Gestão de Negócios USP/ESALQ</span></div>
@@ -301,6 +330,26 @@
           </ul>
         </div>
       </div>
+    </section>
+
+
+    <section id="founders" class="section" aria-labelledby="founders-title">
+      <div class="section-title">
+        <span class="badge">Programa Founders</span>
+        <h2 id="founders-title">90 dias para entender sua empresa e acompanhar suas prioridades</h2>
+        <p>O grupo inicial é planejado para 10 empresas. A seleção considera aderência ao programa, disponibilidade de informações e capacidade de atendimento. Consulte a disponibilidade atual.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>Diagnóstico inicial</h3><p>Avaliação dos fundamentos de gestão e das evidências disponíveis, com referência nos dados dos últimos 90 dias. Discussão de prioridades por impacto, urgência e capacidade de execução.</p></div>
+        <div class="card"><h3>Planos e acompanhamento</h3><p>Planos para períodos de 30 dias, com reavaliações aos 30 e 60 dias. A referência inicial é focar nas cinco principais prioridades, ajustando o plano à realidade da empresa.</p></div>
+        <div class="card"><h3>Avaliação final</h3><p>Novo diagnóstico aos 90 dias, relatório comparando a evolução com a situação inicial e plano de ação bônus para os próximos passos.</p></div>
+      </div>
+      <div class="grid-2">
+        <div class="card"><h3>Como trabalhamos juntos</h3><p>A KF analisa, orienta, acompanha e reavalia. A empresa decide e executa com sua equipe. As reuniões e os canais de atendimento são detalhados na proposta. Os resultados dependem das decisões, da execução e das condições do negócio.</p></div>
+        <div class="card"><h3>Solicite uma proposta</h3><p>Converse com a KF sobre o momento da sua empresa e conheça o investimento e as condições de participação. A proposta detalha as entregas, a agenda e as condições de pagamento do ciclo de 90 dias.</p><div class="cta"><a class="btn whats" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20quero%20solicitar%20uma%20proposta%20para%20o%20Programa%20Founders." target="_blank" rel="noopener noreferrer">Solicitar proposta</a></div></div>
+      </div>
+      <p style="margin-top:16px">Founder identifica a participação no grupo inicial e não concede participação societária. Uma nova etapa de acompanhamento após os 90 dias depende de contratação específica.</p>
+      <div class="cta"><a class="btn primary" href="#duvidas-founders">Consultar perguntas e respostas</a><a class="btn whats" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20quero%20avaliar%20a%20participa%C3%A7%C3%A3o%20da%20minha%20empresa%20no%20Programa%20Founders." target="_blank" rel="noopener noreferrer">Avaliar minha participação</a></div>
     </section>
 
     <section class="section">
@@ -330,7 +379,7 @@
       <div class="section-title">
         <span class="badge">Serviços</span>
         <h2>Como a KF Gestão pode ajudar sua empresa</h2>
-        <p>Os serviços são pensados para organizar o negócio, melhorar a tomada de decisão e fortalecer a imagem profissional da empresa no mercado.</p>
+        <p>As frentes de atuação são definidas conforme a necessidade da empresa. No Programa Founders, o escopo é diagnóstico, priorização e acompanhamento. Projetos de implantação e serviços adicionais dependem de proposta específica.</p>
       </div>
 
       <div class="grid-3">
@@ -370,12 +419,12 @@
       <div class="grid-2">
         <div class="card">
           <span class="badge">Método KF</span>
-          <h2>Um processo simples, prático e orientado a resultado</h2>
+          <h2>Entender, priorizar, agir e evoluir</h2>
           <ul class="list">
-            <li><span class="dot"></span><span><strong>Diagnóstico:</strong> entendemos a situação atual da empresa e as prioridades.</span></li>
-            <li><span class="dot"></span><span><strong>Organização:</strong> implantamos controles, processos e rotinas.</span></li>
-            <li><span class="dot"></span><span><strong>Indicadores:</strong> criamos métricas para acompanhar resultados.</span></li>
-            <li><span class="dot"></span><span><strong>Crescimento:</strong> apoiamos decisões com base em dados, metas e gestão.</span></li>
+            <li><span class="dot"></span><span><strong>Entender:</strong> analisamos informações, evidências e contexto para conhecer a realidade da empresa.</span></li>
+            <li><span class="dot"></span><span><strong>Priorizar:</strong> discutimos impacto, urgência e capacidade de execução para definir o que precisa vir primeiro.</span></li>
+            <li><span class="dot"></span><span><strong>Agir:</strong> orientamos o plano e acompanhamos sua aplicação. A empresa decide e executa com sua equipe.</span></li>
+            <li><span class="dot"></span><span><strong>Evoluir:</strong> reavaliamos o andamento e os resultados observáveis para ajustar os próximos passos.</span></li>
           </ul>
         </div>
 
@@ -399,7 +448,7 @@
           <h2>Clevelândio Lopes Ferreira</h2>
           <h3>Executivo de Operações e Consultor Empresarial</h3>
           <p>
-            Profissional com mais de 39 anos de experiência nos segmentos industrial, aeronáutico,
+            Profissional com trajetória nos segmentos industrial, aeronáutico,
             telecomunicações, logística, infraestrutura, construção pesada, mercado imobiliário e gestão empresarial.
           </p>
           <p style="margin-top:12px">
@@ -447,10 +496,9 @@
       <div class="grid-2">
         <div class="card">
           <span class="badge">Sites e presença digital</span>
-          <h2>Por que incluir um site dentro da consultoria?</h2>
+          <h2>Presença digital como projeto específico</h2>
           <p>
-            Muitas empresas vendem, mas ainda não possuem uma base digital própria. Dependem apenas de redes sociais
-            ou de atendimento manual pelo WhatsApp.
+            Um site pode apoiar a apresentação do negócio e facilitar o contato comercial. A criação ou reorganização de sites é um serviço com escopo próprio, contratado separadamente do Programa Founders.
           </p>
           <ul class="list">
             <li><span class="dot"></span><span>O site fortalece a autoridade da empresa.</span></li>
@@ -476,6 +524,53 @@
       </div>
     </section>
 
+
+    <section id="duvidas-founders" class="section kf-faq" aria-labelledby="kf-faq-title">
+      <div class="section-title">
+        <span class="badge">KF Gestão e Programa Founders</span>
+        <h2 id="kf-faq-title">Tire suas dúvidas sobre o acompanhamento de 90 dias</h2>
+        <p>Pesquise um assunto ou abra uma pergunta para conhecer a proposta, as entregas e as condições de participação.</p>
+      </div>
+      <div class="card">
+        <div class="kf-search" hidden>
+          <label for="kf-question">Qual assunto você quer entender?</label>
+          <input id="kf-question" type="search" placeholder="Ex.: investimento, diagnóstico, entregas" autocomplete="off" maxlength="200">
+          <div class="kf-topics" aria-label="Assuntos sugeridos">
+            <button type="button" data-query="investimento">Investimento</button>
+            <button type="button" data-query="entregas">Entregas</button>
+            <button type="button" data-query="executa">Responsabilidades</button>
+            <button type="button" data-query="">Ver todas</button>
+          </div>
+          <p id="kf-search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div id="kf-answer-list"><details class="kf-answer"><summary>O que é a KF Gestão?</summary><p>A KF Gestão trabalha com inteligência aplicada à gestão de pequenas e médias empresas. Reúne diagnóstico, evidências, priorização, planos de ação e acompanhamento para ajudar o empresário a entender a realidade do negócio e decidir o que precisa vir primeiro.</p></details>
+<details class="kf-answer"><summary>O que é o Programa Founders?</summary><p>É um ciclo de 90 dias de avaliação e acompanhamento de gestão. Inclui diagnóstico inicial, definição de prioridades, planos de ação, reavaliações aos 30 e 60 dias e avaliação final. O grupo inicial foi planejado para 10 empresas selecionadas por aderência e capacidade de atendimento.</p></details>
+<details class="kf-answer"><summary>Para quais empresas o programa é indicado?</summary><p>Para pequenas e médias empresas em operação, com um empresário ou gestor disposto a compartilhar informações, discutir prioridades e executar as ações com sua equipe. Comércio, serviços e indústria podem ser avaliados. A adequação é analisada em uma conversa inicial.</p></details>
+<details class="kf-answer"><summary>Quanto custa e como posso pagar?</summary><p>O investimento e as condições de pagamento são apresentados na conversa comercial, após entendermos o momento da sua empresa e a aderência ao programa. Solicite uma proposta para conhecer as entregas e as condições de contratação dos 90 dias.</p></details>
+<details class="kf-answer"><summary>Como funcionam os 90 dias?</summary><p>No início, alinhamos o escopo e avaliamos a empresa. Organizamos prioridades e o primeiro plano de 30 dias. Aos 30 e 60 dias, reavaliamos o andamento e ajustamos os próximos planos. Aos 90 dias, realizamos um novo diagnóstico e consolidamos a evolução e os próximos passos.</p></details>
+<details class="kf-answer"><summary>Quais entregas minha empresa recebe?</summary><p>Diagnóstico inicial, prioridades fundamentadas, planos de ação, acompanhamento consultivo, reavaliações aos 30 e 60 dias, diagnóstico final, relatório de evolução e plano de ação bônus para os próximos passos após os 90 dias. A proposta e o contrato detalham essas entregas para sua empresa.</p></details>
+<details class="kf-answer"><summary>É uma consultoria?</summary><p>Sim. O Founders envolve orientação consultiva dentro de um escopo definido: diagnóstico, prioridades, planos de ação, acompanhamento e reavaliação da gestão durante 90 dias.</p></details>
+<details class="kf-answer"><summary>Quem executa as mudanças?</summary><p>A KF analisa, orienta, acompanha e reavalia. Sua empresa decide sobre as recomendações e executa as ações com sua equipe. Durante o ciclo, a KF discute dificuldades e apoia os ajustes do plano.</p></details>
+<details class="kf-answer"><summary>Quais áreas são avaliadas no diagnóstico?</summary><p>A metodologia está organizada em 13 pilares, 39 competências e 39 perguntas: Planejamento, Financeiro, Fluxo de Caixa, Comercial, Marketing, Clientes, Estoque, Compras, Processos, Pessoas, Indicadores, Tecnologia e Governança e Melhoria. A avaliação considera os fundamentos necessários ao negócio.</p></details>
+<details class="kf-answer"><summary>Como as prioridades são escolhidas?</summary><p>As informações e evidências são analisadas considerando impacto, urgência e capacidade de execução. A referência operacional é organizar aproximadamente 15 itens e concentrar o primeiro plano nas cinco principais prioridades, ajustando a quantidade à realidade da empresa.</p></details>
+<details class="kf-answer"><summary>Preciso ter ERP ou sistema de gestão?</summary><p>Ter ERP é uma preferência para o grupo inicial porque facilita a obtenção de dados. Se sua empresa utiliza planilhas ou outros controles, a KF precisa avaliar se as informações disponíveis permitem realizar o trabalho com consistência.</p></details>
+<details class="kf-answer"><summary>Quais dados preciso disponibilizar?</summary><p>A referência inicial são informações dos últimos 90 dias, além das respostas ao diagnóstico e registros relevantes sobre a gestão. A lista de dados depende da realidade da empresa e será alinhada no início. Lacunas de informação são consideradas na análise.</p></details>
+<details class="kf-answer"><summary>Há garantia de aumento de lucro ou faturamento?</summary><p>Não há promessa de resultado financeiro ou operacional garantido. A KF se compromete com a análise, a orientação, o acompanhamento e as entregas acordadas. Os resultados dependem também das decisões, da execução, dos dados e das condições do negócio.</p></details>
+<details class="kf-answer"><summary>Como a evolução é medida?</summary><p>Comparamos a situação inicial e final, considerando o diagnóstico, o andamento das ações e os resultados observáveis. Formulários de entrada, 30, 60 e 90 dias complementam a avaliação da experiência. O relatório distingue evidências, percepções e pontos ainda sem informação suficiente.</p></details>
+<details class="kf-answer"><summary>Founder significa ser sócio da KF?</summary><p>Não. Founder identifica a participação no grupo inicial do programa. Não concede participação societária, direito de voto ou poder de gestão na KF.</p></details>
+<details class="kf-answer"><summary>O que acontece após os 90 dias?</summary><p>Sua empresa recebe o diagnóstico final, o relatório de evolução e um plano de ação bônus para orientar os próximos passos. O acompanhamento após o encerramento depende de nova contratação, sem renovação automática por esta apresentação.</p></details>
+<details class="kf-answer"><summary>O programa inclui implantação de sistemas ou serviços especializados?</summary><p>Projetos de engenharia, serviços jurídicos e contábeis, implantação de ERP, desenvolvimento de sistemas e execução de campanhas precisam de escopo próprio quando necessários. Um tema identificado no diagnóstico não significa que sua implantação esteja incluída no Founders.</p></details>
+<details class="kf-answer"><summary>Como são as reuniões e a confidencialidade dos dados?</summary><p>Formato, frequência das reuniões, canais de acompanhamento, acessos e obrigações de confidencialidade são definidos na proposta e no contrato. A divulgação do nome, da marca, de depoimentos ou de resultados da empresa depende de autorização específica.</p></details>
+<details class="kf-answer"><summary>Quem está à frente da KF Gestão?</summary><p>Clevelandio Lopes Ferreira é o fundador e consultor empresarial. Possui trajetória em operações, gestão de negócios e empreendedorismo, com experiência na VASP e em gestão de operações em Angola. É bacharel em Ciências Aeronáuticas e possui MBA em Gestão de Negócios pela USP ESALQ.</p></details>
+<details class="kf-answer"><summary>Como posso participar ou saber se há vagas?</summary><p>Entre em contato com a KF para uma conversa sobre o momento da sua empresa. A KF avalia a aderência e apresenta a proposta para formalização. A disponibilidade de vagas e a agenda devem ser confirmadas diretamente no atendimento.</p></details></div>
+        <p id="kf-no-answer" hidden>Não encontramos uma resposta para esse assunto. Tente outra palavra ou fale diretamente com a KF.</p>
+        <div class="cta">
+          <a id="kf-faq-contact" class="btn whats" href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20Programa%20Founders%20da%20KF%20Gest%C3%A3o." target="_blank" rel="noopener noreferrer">Conversar sobre minha empresa</a>
+        </div>
+        <p class="kf-faq-note">Respostas informativas sobre o programa. A proposta e o contrato detalham o atendimento de cada empresa. Para proteger suas informações, não inclua dados financeiros ou pessoais na pesquisa.</p>
+      </div>
+    </section>
+
     <section id="contato" class="section">
       <div class="grid-2">
         <div class="card">
@@ -487,21 +582,20 @@
           </p>
 
           <div class="cta" style="margin-top:14px">
-            <a class="btn whats" href="https://wa.me/5511993838392?text=Olá,%20quero%20entender%20como%20funciona%20a%20consultoria%20da%20KF%20Gestão%20de%20Negócios." target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn whats" href="https://wa.me/5511993838392?text=Olá,%20quero%20entender%20como%20funciona%20a%20consultoria%20da%20KF%20Gestão%20de%20Negócios." target="_blank" rel="noopener noreferrer">WhatsApp</a>
             <a class="btn" href="mailto:consultorklever@gmail.com">E-mail</a>
-            <a class="btn" href="https://www.linkedin.com/in/clevelandio-lopes-ferreira-09938263" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://www.linkedin.com/in/clevelandio-lopes-ferreira-09938263" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
 
         <div class="card">
           <span class="badge">Próximo passo</span>
-          <h2>Quer entender onde sua empresa pode melhorar?</h2>
+          <h2>Sua empresa tem perfil para o Founders?</h2>
           <p>
-            Entre em contato e conheça uma proposta de diagnóstico para identificar pontos de melhoria
-            na gestão, no controle financeiro, na precificação, no estoque, na operação e também na presença digital.
+            Converse com a KF sobre seu momento, as informações disponíveis e a capacidade de executar um plano. Vamos avaliar a aderência ao acompanhamento de 90 dias.
           </p>
           <div class="cta" style="margin-top:14px">
-            <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20consultoria%20empresarial." target="_blank" rel="noopener">Solicitar atendimento</a>
+            <a class="btn primary" href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20consultoria%20empresarial." target="_blank" rel="noopener noreferrer">Solicitar atendimento</a>
           </div>
         </div>
       </div>
@@ -517,8 +611,9 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
-  <a href="https://wa.me/5511993838392?text=Olá,%20vim%20pelo%20site%20da%20KF%20Gestão%20de%20Negócios%20e%20quero%20um%20diagnóstico."
+  <a href="https://wa.me/5511993838392?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20conhecer%20o%20Programa%20Founders%20da%20KF%20Gest%C3%A3o."
      target="_blank"
+     rel="noopener noreferrer"
      aria-label="Falar no WhatsApp"
      style="
        position: fixed;
@@ -539,6 +634,43 @@
      ">
     💬
   </a>
+<script>
+(function () {
+  'use strict';
+  const root = document.querySelector('.kf-faq');
+  if (!root) return;
+  const search = root.querySelector('#kf-question');
+  const answers = Array.from(root.querySelectorAll('.kf-answer'));
+  const status = root.querySelector('#kf-search-status');
+  const empty = root.querySelector('#kf-no-answer');
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const texts = answers.map(answer => normalize(answer.textContent));
+  const ignored = new Set(['a','o','as','os','e','de','da','do','das','dos','um','uma','no','na','em','que','qual','quais','como','eu','voce','voces','me','minha','meu','para','por','sobre','quanto','custa','funciona','programa','kf','gestao','founders']);
+  const aliases = {preco:'investimento',valor:'investimento',custo:'investimento',custos:'investimento',pagamento:'pagar',parcelas:'pagamento',parcelamento:'pagamento',reuniao:'reunioes',prazo:'dias',duracao:'dias',socio:'societaria',socios:'societaria',sistema:'erp',sistemas:'erp',beneficios:'entregas'};
+  function filter() {
+    const raw = normalize(search.value).trim();
+    let tokens = raw.split(/[^a-z0-9]+/).filter(t => t && !ignored.has(t));
+    tokens = tokens.map(t => aliases[t] || t);
+    if (raw && !tokens.length) tokens = [];
+    let count = 0;
+    answers.forEach((answer,index) => {
+      const show = tokens.every(token => texts[index].includes(token));
+      answer.hidden = !show;
+      if (show) count++;
+    });
+    empty.hidden = count !== 0;
+    status.textContent = count === answers.length ? 'Todas as perguntas disponíveis.' : count + (count === 1 ? ' pergunta encontrada.' : ' perguntas encontradas.');
+  }
+  root.querySelector('.kf-search').hidden = false;
+  search.addEventListener('input',filter);
+  root.querySelectorAll('[data-query]').forEach(button => button.addEventListener('click', () => {
+    search.value = button.dataset.query;
+    filter();
+    search.focus();
+  }));
+  filter();
+})();
+</script>
 </body>
 </html>
-<!-- atualização institucional KF Gestão -->
+<!-- Revisão institucional e base de respostas Founders 2026-10-04 -->
