@@ -5,6 +5,7 @@ const fs=require('node:fs/promises');
 const path=require('node:path');
 const {validate,row,signDownload,verifyDownload,CONSENT,VERSION}=require('./core');
 const {smtpConfig,sendEbook}=require('./email');
+const {configIssues}=require('./config-diagnostic');
 const json=(status,data)=>({status,jsonBody:data,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const testMode=()=>process.env.EBOOK_TEST_MODE==='true' && process.env.SITE_ORIGIN==='https://proud-mud-0d7110710-1.centralus.2.azurestaticapps.net';
 const campaignOpen=()=>!process.env.EBOOK_CAMPAIGN_ENDS_AT || (Number.isFinite(Date.parse(process.env.EBOOK_CAMPAIGN_ENDS_AT)) && Date.now()<Date.parse(process.env.EBOOK_CAMPAIGN_ENDS_AT));
@@ -20,7 +21,11 @@ async function googleToken(diagnostic){
   diagnostic.httpStatus=r.status;
   if(!r.ok) throw Error('Google authentication failed'); const token=await r.json(); if(!token.access_token) throw Error('Missing access token'); return token.access_token;
 }
-app.http('ebookConfig',{methods:['GET'],authLevel:'anonymous',route:'ebook-config',handler:async()=>json(200,{available:!!ready()&&campaignOpen(),campaignClosed:!campaignOpen(),testMode:testMode(),siteKey:ready()&&campaignOpen()?process.env.TURNSTILE_SITE_KEY:null,consentText:CONSENT,consentVersion:VERSION})});
+app.http('ebookConfig',{methods:['GET'],authLevel:'anonymous',route:'ebook-config',handler:async(req,context)=>{
+  const configured=!!ready();
+  if(!configured && context?.error) context.error('KF_EBOOK_CONFIG_BLOCKED: '+configIssues(process.env,testMode()).join(', '));
+  return json(200,{available:configured&&campaignOpen(),campaignClosed:!campaignOpen(),testMode:testMode(),siteKey:configured&&campaignOpen()?process.env.TURNSTILE_SITE_KEY:null,consentText:CONSENT,consentVersion:VERSION});
+}});
 app.http('ebookRegister',{methods:['POST'],authLevel:'anonymous',route:'ebook-register',handler:async(req)=>{
   if(!ready()) return json(503,{error:'O cadastro está temporariamente indisponível. Tente novamente mais tarde.'});
   if(!campaignOpen())return json(410,{error:'O período de solicitação gratuita deste material foi encerrado.'});
