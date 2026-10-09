@@ -5,6 +5,14 @@ require('../api/src/functions');Module._load=original;
 const {VERSION}=require('../api/src/core');
 Object.assign(process.env,{PRIVACY_APPROVED:'true',GOOGLE_CLIENT_EMAIL:'test@example.com',GOOGLE_PRIVATE_KEY:crypto.generateKeyPairSync('rsa',{modulusLength:2048}).privateKey.export({type:'pkcs8',format:'pem'}),GOOGLE_SHEET_ID:'test',TURNSTILE_SECRET_KEY:'test',TURNSTILE_SITE_KEY:'test',DOWNLOAD_SIGNING_SECRET:'x'.repeat(32),SITE_ORIGIN:'https://www.kfgestao.com.br'});
 const req=(consent=false)=>({headers:new Headers({'origin':process.env.SITE_ORIGIN,'content-type':'application/json'}),text:async()=>JSON.stringify({name:'Teste KF',email:'test@example.com',company:'Teste',challenge:'',consent,consentVersion:VERSION,captcha:'token'})});
+test('configuração pública não expõe credenciais e cadastro não declara método de leitura',async()=>{
+ const r=await handlers.ebookConfig.handler();
+ assert.deepEqual(Object.keys(r.jsonBody).sort(),['available','consentText','consentVersion','siteKey','testMode'].sort());
+ assert.deepEqual(handlers.ebookRegister.methods,['POST']);
+ assert.equal(r.headers['Cache-Control'],'no-store');
+ assert.equal(r.jsonBody.GOOGLE_PRIVATE_KEY,undefined);
+ assert.equal(r.jsonBody.DOWNLOAD_SIGNING_SECRET,undefined);
+});
 test('gravação confirmada libera download para ambos os consentimentos',async()=>{const originalFetch=global.fetch;try{for(const consent of [false,true]){let calls=0;global.fetch=async(url,options)=>{calls++;if(url.includes('siteverify'))return Response.json({success:true,hostname:'www.kfgestao.com.br',action:'ebook'});if(url.includes('oauth2'))return Response.json({access_token:'token'});assert.equal(JSON.parse(options.body).values[0][12],consent);return Response.json({updates:{updatedRows:1}});};const r=await handlers.ebookRegister.handler(req(consent));assert.equal(r.status,200);assert.match(r.jsonBody.downloadUrl,/^\/api\/ebook-download\?token=/);assert.equal(calls,3);}}finally{global.fetch=originalFetch;}});
 test('falha da planilha nunca confirma sucesso ou libera download',async()=>{const originalFetch=global.fetch;try{global.fetch=async url=>url.includes('siteverify')?Response.json({success:true,hostname:'www.kfgestao.com.br',action:'ebook'}):url.includes('oauth2')?Response.json({access_token:'token'}):Response.json({error:'fail'},{status:403});const r=await handlers.ebookRegister.handler(req());assert.equal(r.status,503);assert.equal(r.jsonBody.downloadUrl,undefined);assert.equal(r.jsonBody.diagnostic,undefined);}finally{global.fetch=originalFetch;}});
 test('captcha inválido impede acesso ao Google',async()=>{const originalFetch=global.fetch;try{let calls=0;global.fetch=async()=>{calls++;return Response.json({success:false});};assert.equal((await handlers.ebookRegister.handler(req())).status,400);assert.equal(calls,1);}finally{global.fetch=originalFetch;}});

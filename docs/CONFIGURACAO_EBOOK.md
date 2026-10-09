@@ -56,6 +56,8 @@ O Google Sheets não é um CRM e a autorização registrada é uma evidência de
 
 ## Política operacional — decisões e pendências
 
+O registro atualizado de evidências, a avaliação preliminar da coleta e as confirmações contratuais pendentes estão em [REVISAO_PRIVACIDADE_E_VALIDACAO.md](REVISAO_PRIVACIDADE_E_VALIDACAO.md). Os testes fictícios passaram; isso não aprova automaticamente o uso de dados reais.
+
 - Acesso humano inicial: somente o responsável da KF; acesso técnico pela conta de serviço restrita à planilha. Novos acessos devem ser nominativos e revisados.
 - Ativar autenticação de dois fatores nas contas Google, Azure e Cloudflare. Confirmar ativação nos painéis; não presumir que esteja ativa.
 - Sem autorização comercial: excluir o cadastro identificável em até 30 dias da entrega. Não usar estes contatos em prospecção.
