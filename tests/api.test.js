@@ -9,3 +9,17 @@ test('gravação confirmada libera download para ambos os consentimentos',async(
 test('falha da planilha nunca confirma sucesso ou libera download',async()=>{const originalFetch=global.fetch;try{global.fetch=async url=>url.includes('siteverify')?Response.json({success:true,hostname:'www.kfgestao.com.br',action:'ebook'}):url.includes('oauth2')?Response.json({access_token:'token'}):Response.json({error:'fail'},{status:403});const r=await handlers.ebookRegister.handler(req());assert.equal(r.status,503);assert.equal(r.jsonBody.downloadUrl,undefined);}finally{global.fetch=originalFetch;}});
 test('captcha inválido impede acesso ao Google',async()=>{const originalFetch=global.fetch;try{let calls=0;global.fetch=async()=>{calls++;return Response.json({success:false});};assert.equal((await handlers.ebookRegister.handler(req())).status,400);assert.equal(calls,1);}finally{global.fetch=originalFetch;}});
 test('origem diferente é recusada e link inválido não recebe PDF',async()=>{const r=req();r.headers.set('origin','https://example.com');assert.equal((await handlers.ebookRegister.handler(r)).status,403);assert.equal((await handlers.ebookDownload.handler({query:new URLSearchParams('token=invalid')})).status,403);});
+test('modo fictício exige endereço de revisão e recusa dados reais antes de chamar fornecedores',async()=>{
+ const old={privacy:process.env.PRIVACY_APPROVED,mode:process.env.EBOOK_TEST_MODE,origin:process.env.SITE_ORIGIN},originalFetch=global.fetch;
+ try{
+  process.env.PRIVACY_APPROVED='false';process.env.EBOOK_TEST_MODE='true';
+  assert.equal((await handlers.ebookConfig.handler()).jsonBody.available,false);
+  process.env.SITE_ORIGIN='https://proud-mud-0d7110710-1.centralus.2.azurestaticapps.net';
+  assert.equal((await handlers.ebookConfig.handler()).jsonBody.testMode,true);
+  let calls=0;global.fetch=async(url)=>{calls++;return url.includes('siteverify')?Response.json({success:true,hostname:new URL(process.env.SITE_ORIGIN).hostname,action:'ebook'}):url.includes('oauth2')?Response.json({access_token:'token'}):Response.json({updates:{updatedRows:1}});};
+  const real=req();real.text=async()=>JSON.stringify({name:'Pessoa real',email:'pessoa@empresa.com.br',company:'Empresa',consent:false,consentVersion:VERSION,captcha:'token'});
+  assert.equal((await handlers.ebookRegister.handler(real)).status,400);assert.equal(calls,0);
+  for(const consent of [false,true])assert.equal((await handlers.ebookRegister.handler(req(consent))).status,200);
+  assert.equal(calls,6);
+ }finally{process.env.PRIVACY_APPROVED=old.privacy;process.env.SITE_ORIGIN=old.origin;if(old.mode===undefined)delete process.env.EBOOK_TEST_MODE;else process.env.EBOOK_TEST_MODE=old.mode;global.fetch=originalFetch;}
+});

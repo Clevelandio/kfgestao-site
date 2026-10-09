@@ -5,7 +5,8 @@ const fs=require('node:fs/promises');
 const path=require('node:path');
 const {validate,row,signDownload,verifyDownload,CONSENT,VERSION}=require('./core');
 const json=(status,data)=>({status,jsonBody:data,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
-const ready=()=>process.env.PRIVACY_APPROVED==='true' && ['GOOGLE_CLIENT_EMAIL','GOOGLE_PRIVATE_KEY','GOOGLE_SHEET_ID','TURNSTILE_SECRET_KEY','TURNSTILE_SITE_KEY','DOWNLOAD_SIGNING_SECRET'].every(k=>process.env[k]) && process.env.DOWNLOAD_SIGNING_SECRET.length>=32;
+const testMode=()=>process.env.EBOOK_TEST_MODE==='true' && process.env.SITE_ORIGIN==='https://proud-mud-0d7110710-1.centralus.2.azurestaticapps.net';
+const ready=()=>(process.env.PRIVACY_APPROVED==='true'||testMode()) && ['GOOGLE_CLIENT_EMAIL','GOOGLE_PRIVATE_KEY','GOOGLE_SHEET_ID','TURNSTILE_SECRET_KEY','TURNSTILE_SITE_KEY','DOWNLOAD_SIGNING_SECRET'].every(k=>process.env[k]) && process.env.DOWNLOAD_SIGNING_SECRET.length>=32;
 const origin=()=>process.env.SITE_ORIGIN || 'https://www.kfgestao.com.br';
 async function googleToken(){
   const now=Math.floor(Date.now()/1000),enc=x=>Buffer.from(JSON.stringify(x)).toString('base64url');
@@ -14,13 +15,14 @@ async function googleToken(){
   const r=await fetch('https://oauth2.googleapis.com/token',{method:'POST',body:new URLSearchParams({grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',assertion:body+'.'+signature}),signal:AbortSignal.timeout(10000)});
   if(!r.ok) throw Error('Google authentication failed'); const token=await r.json(); if(!token.access_token) throw Error('Missing access token'); return token.access_token;
 }
-app.http('ebookConfig',{methods:['GET'],authLevel:'anonymous',route:'ebook-config',handler:async()=>json(200,{available:!!ready(),siteKey:ready()?process.env.TURNSTILE_SITE_KEY:null,consentText:CONSENT,consentVersion:VERSION})});
+app.http('ebookConfig',{methods:['GET'],authLevel:'anonymous',route:'ebook-config',handler:async()=>json(200,{available:!!ready(),testMode:testMode(),siteKey:ready()?process.env.TURNSTILE_SITE_KEY:null,consentText:CONSENT,consentVersion:VERSION})});
 app.http('ebookRegister',{methods:['POST'],authLevel:'anonymous',route:'ebook-register',handler:async(req)=>{
   if(!ready()) return json(503,{error:'O cadastro está temporariamente indisponível. Tente novamente mais tarde.'});
   if(req.headers.get('origin')!==origin()) return json(403,{error:'Origem não autorizada.'});
   if(!req.headers.get('content-type')?.includes('application/json')) return json(415,{error:'Formato inválido.'});
   let b,d;
   try { const raw=await req.text();if(Buffer.byteLength(raw)>12000)return json(413,{error:'Dados acima do limite.'}); b=JSON.parse(raw); d=validate(b); } catch {return json(400,{error:'Verifique os campos e tente novamente.'});}
+  if(testMode() && (d.name!=='Teste KF'||d.email!=='test@example.com'||d.company!=='Teste'||d.challenge!==''||Object.values(b.campaign||{}).some(v=>v!=='')))return json(400,{error:'Modo de teste: utilize somente os dados fictícios fixos, sem desafio ou parâmetros de campanha.'});
   if(typeof b.captcha!=='string'||b.captcha.length>2048)return json(400,{error:'Conclua a verificação de segurança.'});
   try {
     const r=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',body:new URLSearchParams({secret:process.env.TURNSTILE_SECRET_KEY,response:b.captcha}),signal:AbortSignal.timeout(10000)});

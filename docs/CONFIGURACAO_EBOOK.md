@@ -67,3 +67,8 @@ O Google Sheets não é um CRM e a autorização registrada é uma evidência de
 - Não publicar a política como aprovada até confirmar identificação do controlador, canal de atendimento, prazos, pessoas com acesso e condições dos fornecedores.
 
 Controlador confirmado: KF GESTAO INTELIGENCIA EMPRESARIAL LTDA, CNPJ 69.216.720/0001-95. A aprovação dos prazos e do canal não substitui a verificação dos fornecedores nem a validação da integração. Manter PRIVACY_APPROVED=false até concluir a revisão.
+
+
+## Teste fictício sem aprovação da política
+
+Com PRIVACY_APPROVED=false, EBOOK_TEST_MODE=true funciona exclusivamente se SITE_ORIGIN for exatamente https://proud-mud-0d7110710-1.centralus.2.azurestaticapps.net. Nome Teste KF, e-mail test@example.com, empresa Teste, desafio vazio e UTMs vazias são os únicos dados aceitos. A autorização continua facultativa e o CAPTCHA real é exigido. O servidor recusa outros dados antes de contatar Google/Cloudflare. O navegador ainda transmite sinais técnicos ao Turnstile; este modo não elimina o tratamento técnico dos fornecedores. Use apenas para testes internos, não divulgue o link como campanha. Registros fictícios vão para Cadastros e devem ser excluídos após a verificação. Para sair do teste, definir EBOOK_TEST_MODE=false. Esse modo não constitui aprovação jurídica nem habilitação de produção.
