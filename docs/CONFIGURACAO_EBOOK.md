@@ -72,3 +72,8 @@ Controlador confirmado: KF GESTAO INTELIGENCIA EMPRESARIAL LTDA, CNPJ 69.216.720
 ## Teste fictício sem aprovação da política
 
 Com PRIVACY_APPROVED=false, EBOOK_TEST_MODE=true funciona exclusivamente se SITE_ORIGIN for exatamente https://proud-mud-0d7110710-1.centralus.2.azurestaticapps.net. Nome Teste KF, e-mail test@example.com, empresa Teste, desafio vazio e UTMs vazias são os únicos dados aceitos. A autorização continua facultativa e o CAPTCHA real é exigido. O servidor recusa outros dados antes de contatar Google/Cloudflare. O navegador ainda transmite sinais técnicos ao Turnstile; este modo não elimina o tratamento técnico dos fornecedores. Use apenas para testes internos, não divulgue o link como campanha. Registros fictícios vão para Cadastros e devem ser excluídos após a verificação. Para sair do teste, definir EBOOK_TEST_MODE=false. Esse modo não constitui aprovação jurídica nem habilitação de produção.
+
+
+### Diagnóstico de falhas no modo de teste
+
+Somente no modo fictício do ambiente 1, uma falha retorna a etapa (`captcha_verify`, `google_key`, `google_auth`, `google_write`, `google_confirm` ou `download_sign`) e, quando disponível, o status HTTP do fornecedor. A página exibe esse código após a mensagem de erro. Nunca são incluídos chave, token, resposta bruta do fornecedor ou dados do formulário. Fora desse modo, a resposta permanece genérica. O diagnóstico não ignora a verificação de segurança nem libera PDF sem gravação confirmada.
