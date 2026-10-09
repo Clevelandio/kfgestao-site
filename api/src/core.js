@@ -15,6 +15,6 @@ function validate(b) {
   return data;
 }
 function row(d, now=new Date().toISOString()) { const safe=v=>typeof v==='string' && /^[\s]*[=+@-]/.test(v) ? "'"+v:v; return [now,d.name,d.email,d.company,d.challenge,'KF Planejamento de 90 dias — primeira edição revisada','site:/ebook/',...Object.values(d.campaign),d.consent,now,VERSION,CONSENT].map(safe); }
-function signDownload(secret,now=Date.now()) { const payload=Buffer.from(JSON.stringify({exp:now+3600000})).toString('base64url');return payload+'.'+crypto.createHmac('sha256',secret).update(payload).digest('base64url'); }
+function signDownload(secret,now=Date.now(),ttl=3600000) { if(!Number.isInteger(ttl)||ttl<1||ttl>86400000)throw Error('Invalid download lifetime'); const payload=Buffer.from(JSON.stringify({exp:now+ttl})).toString('base64url');return payload+'.'+crypto.createHmac('sha256',secret).update(payload).digest('base64url'); }
 function verifyDownload(token,secret,now=Date.now()) { try { const [p,s,...extra]=token.split('.'); if(extra.length) return false; const actual=Buffer.from(s,'base64url'),expected=crypto.createHmac('sha256',secret).update(p).digest();return actual.length===expected.length && crypto.timingSafeEqual(actual,expected) && JSON.parse(Buffer.from(p,'base64url')).exp>now; } catch { return false; } }
 module.exports={validate,row,signDownload,verifyDownload,CONSENT,VERSION,HEADERS};

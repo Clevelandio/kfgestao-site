@@ -13,3 +13,8 @@ test('campanha preserva atribuição sem controles ou valores acima do limite',(
 });
 test('fórmulas de planilha são neutralizadas',()=>{const r=row(validate({...input,name:'=IMPORTXML("x")',challenge:'+formula'}));assert.equal(r[1][0],"'");assert.equal(r[4][0],"'");});
 test('link temporário exige assinatura íntegra e não expirada',()=>{const secret='x'.repeat(32),token=signDownload(secret,1000);assert.equal(verifyDownload(token,secret,2000),true);assert.equal(verifyDownload(token,'y'.repeat(32),2000),false);assert.equal(verifyDownload(token,secret,3601001),false);assert.equal(verifyDownload(token+'x',secret,2000),false);});
+test('link enviado por e-mail dura 24 horas, sem alterar vencimento de links anteriores',()=>{
+ const secret='x'.repeat(32),old=signDownload(secret,1000),mail=signDownload(secret,1000,86400000);
+ assert.equal(verifyDownload(old,secret,7201000),false);assert.equal(verifyDownload(mail,secret,7201000),true);
+ assert.equal(verifyDownload(mail,secret,86401000),false);assert.throws(()=>signDownload(secret,1000,86400001));
+});

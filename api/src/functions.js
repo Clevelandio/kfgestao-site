@@ -4,9 +4,11 @@ const crypto=require('node:crypto');
 const fs=require('node:fs/promises');
 const path=require('node:path');
 const {validate,row,signDownload,verifyDownload,CONSENT,VERSION}=require('./core');
+const {smtpConfig,sendEbook}=require('./email');
 const json=(status,data)=>({status,jsonBody:data,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const testMode=()=>process.env.EBOOK_TEST_MODE==='true' && process.env.SITE_ORIGIN==='https://proud-mud-0d7110710-1.centralus.2.azurestaticapps.net';
-const ready=()=>(process.env.PRIVACY_APPROVED==='true'||testMode()) && ['GOOGLE_CLIENT_EMAIL','GOOGLE_PRIVATE_KEY','GOOGLE_SHEET_ID','TURNSTILE_SECRET_KEY','TURNSTILE_SITE_KEY','DOWNLOAD_SIGNING_SECRET'].every(k=>process.env[k]) && process.env.DOWNLOAD_SIGNING_SECRET.length>=32;
+const campaignOpen=()=>!process.env.EBOOK_CAMPAIGN_ENDS_AT || (Number.isFinite(Date.parse(process.env.EBOOK_CAMPAIGN_ENDS_AT)) && Date.now()<Date.parse(process.env.EBOOK_CAMPAIGN_ENDS_AT));
+const ready=()=>(process.env.PRIVACY_APPROVED==='true'||testMode()) && ['GOOGLE_CLIENT_EMAIL','GOOGLE_PRIVATE_KEY','GOOGLE_SHEET_ID','TURNSTILE_SECRET_KEY','TURNSTILE_SITE_KEY','DOWNLOAD_SIGNING_SECRET'].every(k=>process.env[k]) && process.env.DOWNLOAD_SIGNING_SECRET.length>=32 && (testMode()||!!smtpConfig());
 const origin=()=>process.env.SITE_ORIGIN || 'https://www.kfgestao.com.br';
 async function googleToken(diagnostic){
   diagnostic.stage='google_key'; diagnostic.httpStatus=null;
@@ -18,9 +20,10 @@ async function googleToken(diagnostic){
   diagnostic.httpStatus=r.status;
   if(!r.ok) throw Error('Google authentication failed'); const token=await r.json(); if(!token.access_token) throw Error('Missing access token'); return token.access_token;
 }
-app.http('ebookConfig',{methods:['GET'],authLevel:'anonymous',route:'ebook-config',handler:async()=>json(200,{available:!!ready(),testMode:testMode(),siteKey:ready()?process.env.TURNSTILE_SITE_KEY:null,consentText:CONSENT,consentVersion:VERSION})});
+app.http('ebookConfig',{methods:['GET'],authLevel:'anonymous',route:'ebook-config',handler:async()=>json(200,{available:!!ready()&&campaignOpen(),campaignClosed:!campaignOpen(),testMode:testMode(),siteKey:ready()&&campaignOpen()?process.env.TURNSTILE_SITE_KEY:null,consentText:CONSENT,consentVersion:VERSION})});
 app.http('ebookRegister',{methods:['POST'],authLevel:'anonymous',route:'ebook-register',handler:async(req)=>{
   if(!ready()) return json(503,{error:'O cadastro está temporariamente indisponível. Tente novamente mais tarde.'});
+  if(!campaignOpen())return json(410,{error:'O período de solicitação gratuita deste material foi encerrado.'});
   if(req.headers.get('origin')!==origin()) return json(403,{error:'Origem não autorizada.'});
   if(!req.headers.get('content-type')?.includes('application/json')) return json(415,{error:'Formato inválido.'});
   let b,d;
@@ -39,7 +42,12 @@ app.http('ebookRegister',{methods:['POST'],authLevel:'anonymous',route:'ebook-re
     diagnostic.httpStatus=saved.status;
     if(!saved.ok)throw Error('Sheet write failed'); diagnostic.stage='google_confirm'; const result=await saved.json();if(result.updates?.updatedRows!==1)throw Error('Write not confirmed');
     diagnostic.stage='download_sign';diagnostic.httpStatus=null;
-    return json(200,{downloadUrl:'/api/ebook-download?token='+signDownload(process.env.DOWNLOAD_SIGNING_SECRET)});
+    const downloadUrl='/api/ebook-download?token='+signDownload(process.env.DOWNLOAD_SIGNING_SECRET,Date.now(),86400000);
+    let emailStatus;
+    try { emailStatus=await sendEbook(d.email,new URL(downloadUrl,origin()).href,testMode()); }
+    catch { emailStatus='unavailable'; }
+    // SMTP aceito não é confirmação de entrega na caixa de entrada. A gravação já foi confirmada.
+    return json(200,{downloadUrl,emailStatus});
   }catch{return json(503,{error:'Não conseguimos confirmar o cadastro. Tente novamente. Se a conexão caiu, o registro pode ter sido salvo.',...(testMode()?{diagnostic}:{})});}
 }});
 app.http('ebookDownload',{methods:['GET'],authLevel:'anonymous',route:'ebook-download',handler:async(req)=>{

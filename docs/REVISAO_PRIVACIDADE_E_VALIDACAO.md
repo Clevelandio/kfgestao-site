@@ -62,6 +62,22 @@ Referências oficiais consultadas em 09/10/2026:
 - Google, mecanismos de transferência: https://policies.google.com/privacy/frameworks?hl=pt-BR
 - Cloudflare, privacidade do Turnstile: https://www.cloudflare.com/turnstile-privacy-policy/
 
+### Atualização da evidência Azure — 09/10/2026
+
+O portal exibiu o tipo “Contrato de Cliente da Microsoft”, com Microsoft Customer Agreement ativo e efetivação em 06/02/2026. O documento fornecido pelo usuário foi lido, incluindo a introdução, Data Protection and Processing, definições e Supplemental Individual User Purchase Terms. A introdução inclui DPA, Product Terms e SLAs; a cláusula geral incorpora o DPA por referência. A definição remete a https://aka.ms/DPA, atualizado periodicamente.
+
+O documento também contém termos suplementares para certos usuários individuais, definidos de forma específica e excluindo Administrator. Esses termos substituem a cláusula geral de tratamento. Portanto, não concluir a aplicabilidade somente pelo nome pessoal na cobrança. A tela confirma propriedade da conta de cobrança, mas não resolve sozinha todo o enquadramento contratual. O pedido “prossiga” não foi interpretado como resposta factual à pergunta sobre a criação/administração da assinatura.
+
+Conclusão parcial: existência e tipo do contrato Azure confirmados; referência ao DPA confirmada no texto. Isso reduz a pendência documental, mas não comprova processamento exclusivo no Brasil nem substitui a análise das condições específicas do produto e transferências. O download do DPA por meio da página oficial retornou erro na ferramenta de leitura; seu conteúdo integral ainda não foi analisado nesta atualização.
+
+### Atualização Google e Turnstile — 09/10/2026
+
+Foram lidos os termos adicionais do Drive, em vigor desde 22/10/2025: arquivos no Drive individual são privados até compartilhamento; arquivos em pastas compartilhadas herdam permissões; o conteúdo não é usado em campanhas promocionais pelo Google. A página de mecanismos de transferência informa servidores globais, uso de cláusulas padrão quando necessário e possibilidade de incorporá-las em contratos comerciais. Não foi demonstrado, por essas páginas, qual instrumento cobre a transferência dos cadastros da KF em conta pessoal. Não concluir proibição de uso empresarial nem cobertura automática de Workspace.
+
+O adendo Turnstile, atualizado em 18/06/2025, identifica IP, impressão TLS, User-Agent, sitekey e origem. Cloudflare atua como operador na proteção dos sites de clientes e controlador ao aperfeiçoar a detecção de bots. A política da KF já informa processamento técnico e aperfeiçoamento, mas não deve afirmar que Cloudflare é apenas operador para todas as finalidades. O adendo não comprova sozinho a incorporação de um DPA específico à conta.
+
+Referências adicionais: https://www.google.com/drive/terms-of-service/ e https://www.cloudflare.com/turnstile-privacy-policy/. A revisão é documental e técnica; não equivale a auditoria das contas ou parecer jurídico conclusivo.
+
 ## Rotina aceita pelo responsável
 
 Responsável: KF GESTAO INTELIGENCIA EMPRESARIAL LTDA, CNPJ 69.216.720/0001-95. Canal confirmado: contato@kfgestao.com.br. Acompanhamento e revisão mensal aceitos pelo usuário.

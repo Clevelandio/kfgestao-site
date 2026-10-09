@@ -1,1 +1,1 @@
-{"name":"kf-ebook-api","version":"1.0.0","private":true,"main":"src/functions.js","engines":{"node":">=22"},"dependencies":{"@azure/functions":"^4.0.0"}}
+{"name":"kf-ebook-api","version":"1.0.0","private":true,"main":"src/functions.js","engines":{"node":">=22"},"dependencies":{"@azure/functions":"^4.0.0","nodemailer":"10.0.16"}}

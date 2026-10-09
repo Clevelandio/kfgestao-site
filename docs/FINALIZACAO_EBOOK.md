@@ -40,8 +40,12 @@ As condições públicas consultadas explicam os serviços, mas não permitem af
 
 ## Operação
 
-Consultar somente os registros autorizados para contatos comerciais. Atender o canal contato@kfgestao.com.br e executar a revisão mensal de retenção já aceita. Excluir registros fictícios após encerrar os testes. A rotina de exclusão não é automática.
+Consultar somente os registros autorizados para contatos comerciais. Atender o canal contato@kfgestao.com.br e executar rotina de retenção compatível com o limite de 30 dias, antecipando vencimentos. Excluir registros fictícios após encerrar os testes. A rotina de exclusão não é automática.
 
-O pacote não envia e-mails, não cria painel de analytics e não registra leitura do PDF. Os eventos preparados não contêm os dados do formulário. A chave Google anteriormente exposta não deve ser reutilizada; o usuário informou que ela já não consta na lista de chaves.
+A versão atual prepara envio transacional Hostinger (ver ENVIO_HOSTINGER.md), não cria painel de analytics e não registra leitura do PDF. Os eventos preparados não contêm os dados do formulário. A chave Google anteriormente exposta não deve ser reutilizada; o usuário informou que ela já não consta na lista de chaves.
 
 Se o repositório for público, o PDF versionado nele pode ser obtido fora do formulário. Não prometer restrição absoluta de acesso; avaliar a visibilidade do repositório antes de divulgar.
+
+## Atualização posterior: Hostinger
+
+Fornecedor da caixa confirmado pelo usuário em 09/10/2026. Código SMTP preparado, dependência fixada e 20 testes locais passaram; npm audit não apontou vulnerabilidades conhecidas nas dependências de produção. A caixa/servidor e o envio real ainda devem ser validados no ambiente 1. A senha deve ser inserida diretamente no Azure, nunca em mensagens. Não considerar a aceitação SMTP como entrega comprovada.

@@ -37,7 +37,7 @@ Criar um pull request desta branch para `main` é o caminho recomendado para rev
 - Obrigatórios, e-mail inválido, falha de rede e captcha inválido; nenhum sucesso antes da confirmação da API Sheets.
 - Comparar a linha gravada com os 16 cabeçalhos e conferir horário UTC, versão e texto.
 - Abrir planilha em janela anônima: não deve exibir registros. Testar GET em `/api/ebook-register`: não há rota de leitura.
-- Confirmar download, assinatura inválida e expiração em uma hora. PDF guardado em `api/material`, fora da pasta pública.
+- Confirmar download, assinatura inválida e expiração de links novos em 24 horas. PDF guardado em `api/material`, fora da pasta pública.
 - Conferir celular, teclado, foco, rótulos e mensagens; repetir a busca FAQ e contatos do site original.
 - Não selecionar cadastros com autorização `false` para ações comerciais. Retirada posterior de autorização precisa de processo manual definido pela KF.
 
@@ -45,7 +45,7 @@ Criar um pull request desta branch para `main` é o caminho recomendado para rev
 
 Eventos locais `kf:ebook-event`: `ebook_page_view`, `ebook_registration_complete`, `ebook_download_click`, `ebook_founders_click`. Não existe provedor de analytics no site original; esses eventos estão preparados, mas não geram um painel nem persistência de métricas. O payload contém apenas nome do evento e material. Uma integração posterior deve manter esses limites e não enviar URL com UTM arbitrários, nome, e-mail ou desafio.
 
-Clique no botão não comprova download concluído nem leitura. Não há envio automático de e-mail. Não há criação de conta. A confirmação usa a resposta de gravação da Sheets API; falha de rede após gravação pode gerar duplicação numa nova tentativa, pois não há garantia transacional de idempotência no Google Sheets. O bloqueio de duplo clique é local, e o captcha reduz spam; não existe rate limiter distribuído. Monitorar consumo e reforçar controles caso o volume exija.
+Clique no botão não comprova download concluído nem leitura. A versão atual prepara envio transacional pelo SMTP Hostinger após gravação; configuração e teste integrado estão descritos em [ENVIO_HOSTINGER.md](ENVIO_HOSTINGER.md). Não há criação de conta. A confirmação usa a resposta de gravação da Sheets API; falha de rede após gravação pode gerar duplicação numa nova tentativa, pois não há garantia transacional de idempotência no Google Sheets. O bloqueio de duplo clique é local, e o captcha reduz spam; não existe rate limiter distribuído. Monitorar consumo e reforçar controles caso o volume exija.
 
 O Google Sheets não é um CRM e a autorização registrada é uma evidência de coleta, não um sistema completo de gestão de preferências. Não ordenar manualmente só parte das colunas. Fazer cópias de segurança conforme a política definida. O link temporário pode ser compartilhado enquanto válido: não é vinculado a uma conta.
 
@@ -62,7 +62,7 @@ O registro atualizado de evidências, a avaliação preliminar da coleta e as co
 - Ativar autenticação de dois fatores nas contas Google, Azure e Cloudflare. Confirmar ativação nos painéis; não presumir que esteja ativa.
 - Sem autorização comercial: excluir o cadastro identificável em até 30 dias da entrega. Não usar estes contatos em prospecção.
 - Com autorização comercial: revisão após 12 meses sem interação significativa; excluir ou anonimizar quando não houver finalidade atual. Estes prazos foram aprovados pelo responsável em 08/10/2026; são escolhas operacionais, não prazos legais universais.
-- Revisar mensalmente os registros vencidos e excluir também cópias/exportações controladas pela KF. A implementação atual não executa exclusão automática nem controla o histórico interno dos fornecedores.
+- Para respeitar o limite de 30 dias, verificar antecipadamente registros que venceriam antes da próxima execução; a revisão apenas mensal de vencidos é insuficiente. Excluir também cópias/exportações controladas pela KF. A implementação atual não executa exclusão automática nem controla o histórico interno dos fornecedores.
 - Solicitações de acesso, correção, exclusão e retirada da autorização: canal confirmado e acompanhado pelo responsável: contato@kfgestao.com.br. Interromper contatos após retirada; registrar o atendimento com o mínimo de dados necessário.
 - Manter finalidade e base legal documentadas separadamente para entrega, contatos comerciais, segurança e eventuais registros necessários. Revisar bases legais e condições de transferência internacional antes de aprovar a política.
 - Não coletar dados sensíveis nem informações pessoais de terceiros no desafio de gestão. Não enviar dados do formulário para analytics/publicidade.
@@ -79,3 +79,7 @@ Com PRIVACY_APPROVED=false, EBOOK_TEST_MODE=true funciona exclusivamente se SITE
 ### Diagnóstico de falhas no modo de teste
 
 Somente no modo fictício do ambiente 1, uma falha retorna a etapa (`captcha_verify`, `google_key`, `google_auth`, `google_write`, `google_confirm` ou `download_sign`) e, quando disponível, o status HTTP do fornecedor. A página exibe esse código após a mensagem de erro. Nunca são incluídos chave, token, resposta bruta do fornecedor ou dados do formulário. Fora desse modo, a resposta permanece genérica. O diagnóstico não ignora a verificação de segurança nem libera PDF sem gravação confirmada.
+
+## Atualização: envio por e-mail
+
+O cadastro real também exige SMTP configurado. Usar ENVIO_HOSTINGER.md para acrescentar SMTP_HOST, SMTP_PORT, SMTP_USER e SMTP_PASSWORD no ambiente 1. Não configurar segredos no GitHub. A campanha pode ser encerrada por EBOOK_CAMPAIGN_ENDS_AT; nenhum dia foi escolhido automaticamente. A planilha preserva os 16 campos.
