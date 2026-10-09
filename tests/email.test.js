@@ -7,7 +7,7 @@ test('SMTP exige remetente fixo, servidor permitido e transporte seguro',()=>{
  const fallback=smtpConfig({...base,SMTP_PORT:587});assert.equal(fallback.secure,false);assert.equal(fallback.requireTLS,true);
 });
 test('mensagem transacional usa link do PDF sem desafio, empresa, promoção ou tracking',()=>{
- const m=message('test@example.com','https://www.kfgestao.com.br/api/ebook-download?token=test');assert.deepEqual(m.to,{address:'test@example.com'});assert.match(m.text,/24 horas/);assert.match(m.text,/ebook-download/);assert.doesNotMatch(m.text,/Conheça o Programa|utm_|<img|desafio/);assert.equal(m.html,undefined);assert.equal(m.attachments,undefined);
+ const m=message('test@example.com','https://www.kfgestao.com.br/api/ebook-download?token=test');assert.deepEqual(m.to,{address:'test@example.com'});assert.match(m.text,/24 horas/);assert.match(m.text,/ebook-download/);assert.doesNotMatch(m.text,/Conheça o Programa|utm_|<img|desafio/);assert.match(m.html,/<a href="https:\/\/www.kfgestao.com.br\/api\/ebook-download\?token=test"[^>]*>Baixar e-book gratuito<\/a>/);assert.doesNotMatch(m.html,/<script|<img|utm_/);assert.equal(m.attachments,undefined);
  assert.throws(()=>message('test@example.com','http://www.kfgestao.com.br/api/ebook-download?token=x'));
 });
 test('envio real usa destinatário solicitado, teste usa só caixa da KF e aceitação é exigida',async()=>{
