@@ -5,6 +5,16 @@ require('../api/src/functions');Module._load=original;
 const {VERSION}=require('../api/src/core');
 Object.assign(process.env,{PRIVACY_APPROVED:'true',GOOGLE_CLIENT_EMAIL:'test@example.com',GOOGLE_PRIVATE_KEY:crypto.generateKeyPairSync('rsa',{modulusLength:2048}).privateKey.export({type:'pkcs8',format:'pem'}),GOOGLE_SHEET_ID:'test',TURNSTILE_SECRET_KEY:'test',TURNSTILE_SITE_KEY:'test',DOWNLOAD_SIGNING_SECRET:'x'.repeat(32),SITE_ORIGIN:'https://www.kfgestao.com.br',SMTP_USER:'contato@kfgestao.com.br',SMTP_PASSWORD:'synthetic-password'});
 const req=(consent=false)=>({headers:new Headers({'origin':process.env.SITE_ORIGIN,'content-type':'application/json'}),text:async()=>JSON.stringify({name:'Teste KF',email:'test@example.com',company:'Teste',challenge:'',consent,consentVersion:VERSION,captcha:'token'})});
+test('configuração bloqueada registra apenas nome no log privado, sem mudar resposta pública',async()=>{
+ const old=process.env.SMTP_PASSWORD,logs=[];
+ try {
+  delete process.env.SMTP_PASSWORD;
+  const r=await handlers.ebookConfig.handler({}, {error:line=>logs.push(line)});
+  assert.deepEqual(logs,['KF_EBOOK_CONFIG_BLOCKED: SMTP_PASSWORD']);
+  assert.equal(r.jsonBody.available,false);
+  assert.doesNotMatch(JSON.stringify(r.jsonBody),/SMTP_PASSWORD|synthetic-password|KF_EBOOK_CONFIG_BLOCKED/);
+ } finally {process.env.SMTP_PASSWORD=old;}
+});
 test('configuração pública não expõe credenciais e cadastro não declara método de leitura',async()=>{
  const r=await handlers.ebookConfig.handler();
  assert.deepEqual(Object.keys(r.jsonBody).sort(),['available','campaignClosed','consentText','consentVersion','siteKey','testMode'].sort());
